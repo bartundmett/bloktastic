@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bloktastic.dev/schema/registry.schema.json",
+  "title": "Bloktastic Registry",
+  "description": "Schema for registry.json",
+  "type": "object",
+  "required": ["name", "version", "packages"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "type": "string",
+      "const": "bloktastic"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    },
+    "repository": {
+      "type": "string",
+      "format": "uri"
+    },
+    "packages": {
+      "type": "object",
+      "required": ["components", "plugins", "presets"],
+      "properties": {
+        "components": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/packageEntry" }
+        },
+        "plugins": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/packageEntry" }
+        },
+        "presets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/packageEntry" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "categories": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "plugins": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "totalComponents": { "type": "integer", "minimum": 0 },
+        "totalPlugins": { "type": "integer", "minimum": 0 },
+        "totalPresets": { "type": "integer", "minimum": 0 },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "packageEntry": {
+      "type": "object",
+      "required": ["name", "path", "version", "title"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^@[a-z0-9-]+/[a-z0-9-]+$"
+        },
+        "path": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "category": {
+          "type": ["string", "null"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["stable", "maintained", "unmaintained", "deprecated", "archived"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

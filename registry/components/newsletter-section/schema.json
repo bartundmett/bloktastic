@@ -1,0 +1,50 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "newsletter_section",
+  "display_name": "Newsletter Section",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Signup heading",
+      "required": true
+    },
+    "subline": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Subline",
+      "description": "Optional helper copy"
+    },
+    "placeholder": {
+      "type": "text",
+      "pos": 2,
+      "display_name": "Input Placeholder",
+      "description": "Email placeholder text"
+    },
+    "button_label": {
+      "type": "text",
+      "pos": 3,
+      "display_name": "Button Label",
+      "description": "Submit button text",
+      "required": true
+    },
+    "consent_text": {
+      "type": "text",
+      "pos": 4,
+      "display_name": "Consent Text",
+      "description": "Privacy/compliance helper text"
+    },
+    "success_message": {
+      "type": "text",
+      "pos": 5,
+      "display_name": "Success Message",
+      "description": "Message shown on successful submit"
+    }
+  },
+  "preview_field": "headline"
+}

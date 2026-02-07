@@ -1,0 +1,32 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "accordion_item",
+  "display_name": "Accordion Item",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Title",
+      "description": "Question or heading text",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "pos": 1,
+      "display_name": "Content",
+      "description": "Expandable answer or body content",
+      "required": true
+    },
+    "icon": {
+      "type": "asset",
+      "pos": 2,
+      "display_name": "Icon",
+      "description": "Optional icon shown next to title"
+    }
+  },
+  "preview_field": "title"
+}

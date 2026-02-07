@@ -1,0 +1,50 @@
+{
+  "name": "@bloktastic/cli",
+  "version": "0.1.0",
+  "description": "CLI for Bloktastic - Storyblok component and plugin registry",
+  "type": "module",
+  "bin": {
+    "bloktastic": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit",
+    "check": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "chalk": "^5.4.1",
+    "clipboardy": "^4.0.0",
+    "commander": "^12.1.0",
+    "ora": "^8.2.0",
+    "prompts": "^2.4.2",
+    "storyblok-js-client": "^6.10.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.4.0",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "storyblok",
+    "cli",
+    "components",
+    "registry"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bloktastic/bloktastic"
+  },
+  "license": "MIT"
+}

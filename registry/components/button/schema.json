@@ -1,0 +1,60 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "button",
+  "display_name": "Button",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "label": {
+      "type": "text",
+      "pos": 0,
+      "required": true,
+      "display_name": "Label",
+      "description": "Visible button text"
+    },
+    "link": {
+      "type": "multilink",
+      "pos": 1,
+      "display_name": "Link",
+      "description": "Internal, external, or email destination"
+    },
+    "variant": {
+      "type": "option",
+      "pos": 2,
+      "display_name": "Variant",
+      "default_value": "primary",
+      "options": [
+        { "name": "Primary", "value": "primary" },
+        { "name": "Secondary", "value": "secondary" },
+        { "name": "Ghost", "value": "ghost" },
+        { "name": "Link", "value": "link" }
+      ]
+    },
+    "size": {
+      "type": "option",
+      "pos": 3,
+      "display_name": "Size",
+      "default_value": "medium",
+      "options": [
+        { "name": "Small", "value": "small" },
+        { "name": "Medium", "value": "medium" },
+        { "name": "Large", "value": "large" }
+      ]
+    },
+    "full_width": {
+      "type": "boolean",
+      "pos": 4,
+      "display_name": "Full Width",
+      "default_value": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "pos": 5,
+      "display_name": "Disabled",
+      "default_value": false
+    }
+  },
+  "preview_field": "label"
+}

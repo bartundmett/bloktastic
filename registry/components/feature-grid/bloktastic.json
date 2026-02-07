@@ -1,0 +1,46 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/feature-grid",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Feature Grid",
+  "description": "Marketing feature section with heading and nested feature items in responsive columns.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "vue",
+      "nuxt",
+      "react",
+      "nextjs",
+      "astro",
+      "svelte",
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "features",
+    "grid",
+    "benefits",
+    "marketing"
+  ],
+  "category": "sections",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": [
+      "@bloktastic/feature-item"
+    ]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

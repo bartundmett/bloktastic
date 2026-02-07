@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PackageCard from '../../components/PackageCard.astro';
+import { extractSlug, getComponents } from '../../lib/registry';
+
+const components = getComponents();
+
+const grouped = components.reduce<Record<string, typeof components>>((acc, item) => {
+  const category = item.category ?? 'uncategorized';
+  if (!acc[category]) acc[category] = [];
+  acc[category].push(item);
+  return acc;
+}, {});
+
+const categories = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+---
+
+<BaseLayout title="Bloks" description="Browse Storyblok component schemas and AI prompts from the Bloktastic registry.">
+  <section class="container-shell py-12">
+    <header class="mb-10 max-w-3xl">
+      <p class="mb-3 inline-flex rounded-full bg-paper px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-slate-600">
+        Component Library
+      </p>
+      <h1 class="font-display text-4xl font-extrabold text-graphite lg:text-5xl">Browse Bloks</h1>
+      <p class="mt-3 text-lg text-slate-600">
+        Installable Storyblok component definitions with generation prompts, compatibility metadata, and docs.
+      </p>
+    </header>
+
+    <div class="glass-card mb-8 grid gap-4 p-5 md:grid-cols-[1fr_220px]">
+      <label class="relative block">
+        <span class="sr-only">Search components</span>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search by name, title, or tag"
+          class="w-full rounded-xl border border-borderline bg-white px-4 py-3 text-sm text-graphite outline-none ring-intelligence/30 transition focus:ring"
+        />
+      </label>
+
+      <label class="block">
+        <span class="sr-only">Filter categories</span>
+        <select
+          id="category-filter"
+          class="w-full rounded-xl border border-borderline bg-white px-4 py-3 text-sm font-semibold text-slate-700 outline-none ring-intelligence/30 transition focus:ring"
+        >
+          <option value="">All Categories</option>
+          {categories.map((category) => (
+            <option value={category}>{category}</option>
+          ))}
+        </select>
+      </label>
+    </div>
+
+    <div id="component-groups" class="space-y-12">
+      {categories.map((category) => (
+        <section class="category-section" data-category={category}>
+          <h2 class="mb-4 text-2xl font-bold capitalize text-graphite">{category}</h2>
+          <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {grouped[category].map((entry) => (
+              <div
+                class="component-item"
+                data-name={entry.name.toLowerCase()}
+                data-title={entry.title.toLowerCase()}
+                data-tags={(entry.tags ?? []).join(' ').toLowerCase()}
+              >
+                <PackageCard entry={entry} href={`/components/${extractSlug(entry.path)}`} kind="component" />
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <div id="empty-state" class="hidden glass-card py-14 text-center text-slate-500">
+      No components match your filters.
+    </div>
+  </section>
+
+  <script>
+    const searchInput = document.getElementById('search-input');
+    const categoryFilter = document.getElementById('category-filter');
+    const sections = Array.from(document.querySelectorAll('.category-section'));
+    const emptyState = document.getElementById('empty-state');
+
+    const filter = () => {
+      const query = searchInput instanceof HTMLInputElement ? searchInput.value.toLowerCase().trim() : '';
+      const category = categoryFilter instanceof HTMLSelectElement ? categoryFilter.value : '';
+
+      let visible = 0;
+
+      sections.forEach((section) => {
+        const sectionCategory = section.getAttribute('data-category') || '';
+        const passCategory = !category || category === sectionCategory;
+
+        if (!passCategory) {
+          section.classList.add('hidden');
+          return;
+        }
+
+        let sectionCount = 0;
+        section.querySelectorAll('.component-item').forEach((item) => {
+          const name = item.getAttribute('data-name') || '';
+          const title = item.getAttribute('data-title') || '';
+          const tags = item.getAttribute('data-tags') || '';
+          const matches = !query || name.includes(query) || title.includes(query) || tags.includes(query);
+          if (matches) {
+            item.classList.remove('hidden');
+            sectionCount += 1;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        if (sectionCount === 0) {
+          section.classList.add('hidden');
+        } else {
+          section.classList.remove('hidden');
+          visible += sectionCount;
+        }
+      });
+
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visible > 0);
+      }
+    };
+
+    searchInput?.addEventListener('input', filter);
+    categoryFilter?.addEventListener('change', filter);
+  </script>
+</BaseLayout>

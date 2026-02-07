@@ -1,0 +1,30 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/seo-auditor",
+  "type": "plugin",
+  "version": "0.9.0",
+  "title": "SEO Auditor",
+  "description": "Sidebar tool plugin that evaluates title length, heading structure, and meta coverage.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["agnostic"]
+  },
+  "tags": ["plugin", "sidebar", "seo", "analysis"],
+  "category": "sidebar-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://github.com/bloktastic/seo-auditor",
+    "docs": "https://github.com/bloktastic/seo-auditor#readme"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

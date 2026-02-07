@@ -1,0 +1,37 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "faq_section",
+  "display_name": "FAQ Section",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "FAQ heading",
+      "required": true
+    },
+    "intro": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Intro",
+      "description": "Optional helper text"
+    },
+    "faq_accordion": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "FAQ Accordion",
+      "description": "Embed a single accordion blok",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "accordion"
+      ],
+      "maximum": 1
+    }
+  },
+  "preview_field": "headline"
+}

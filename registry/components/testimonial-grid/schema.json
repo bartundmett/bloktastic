@@ -1,0 +1,57 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "testimonial_grid",
+  "display_name": "Testimonial Grid",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Section headline",
+      "required": true
+    },
+    "intro": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Intro",
+      "description": "Optional supporting copy"
+    },
+    "testimonials": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "Testimonials",
+      "description": "List of testimonial items",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "testimonial_item"
+      ]
+    },
+    "columns": {
+      "type": "option",
+      "pos": 3,
+      "display_name": "Columns",
+      "default_value": "3",
+      "options": [
+        {
+          "name": "1 Column",
+          "value": "1"
+        },
+        {
+          "name": "2 Columns",
+          "value": "2"
+        },
+        {
+          "name": "3 Columns",
+          "value": "3"
+        }
+      ],
+      "description": "Desktop column count"
+    }
+  },
+  "preview_field": "headline"
+}

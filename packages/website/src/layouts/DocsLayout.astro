@@ -1,0 +1,127 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const nav = [
+  { href: '/docs', label: 'Overview' },
+  { href: '/docs/getting-started', label: 'Getting Started' },
+  { href: '/docs/cli', label: 'CLI Reference' },
+  { href: '/docs/contributing', label: 'Contributing' }
+];
+
+const current = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="container-shell py-12">
+    <div class="grid gap-8 lg:grid-cols-[240px_1fr]">
+      <aside>
+        <nav class="glass-card sticky top-24 p-4">
+          <p class="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Documentation</p>
+          <ul class="space-y-1">
+            {nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class={`block rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${current === item.href ? 'bg-paper text-graphite' : 'text-slate-600 hover:bg-slate-100 hover:text-graphite'}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+
+      <article class="glass-card prose prose-slate max-w-none p-6 lg:p-10">
+        <slot />
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .prose h1 {
+    margin-bottom: 1.2rem;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 800;
+    color: #1b243f;
+    line-height: 1.1;
+  }
+
+  .prose h2 {
+    margin-top: 2.4rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 700;
+    color: #1b243f;
+  }
+
+  .prose h3 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: #1b243f;
+  }
+
+  .prose p,
+  .prose li {
+    color: #475569;
+    line-height: 1.75;
+  }
+
+  .prose a {
+    color: #0891b2;
+    font-weight: 600;
+  }
+
+  .prose code {
+    border-radius: 0.4rem;
+    background: #f1f5f9;
+    padding: 0.15rem 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    color: #1e293b;
+  }
+
+  .prose pre {
+    overflow-x: auto;
+    border-radius: 1rem;
+    background: #0f172a;
+    padding: 1rem;
+    color: #e2e8f0;
+  }
+
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 0.8rem;
+  }
+
+  .prose th,
+  .prose td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+  }
+
+  .prose th {
+    background: #f8fafc;
+    font-weight: 700;
+    color: #0f172a;
+  }
+</style>

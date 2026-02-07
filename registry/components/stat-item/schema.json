@@ -1,0 +1,32 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "stat_item",
+  "display_name": "Stat Item",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "value": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Value",
+      "description": "Primary metric value, e.g. 125K",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Label",
+      "description": "What the metric represents",
+      "required": true
+    },
+    "helper": {
+      "type": "text",
+      "pos": 2,
+      "display_name": "Helper Text",
+      "description": "Optional context or change indicator"
+    }
+  },
+  "preview_field": "value"
+}

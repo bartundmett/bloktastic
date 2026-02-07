@@ -1,0 +1,71 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "hero",
+  "display_name": "Hero",
+  "is_root": true,
+  "is_nestable": true,
+  "schema": {
+    "eyebrow": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Eyebrow"
+    },
+    "headline": {
+      "type": "text",
+      "pos": 1,
+      "required": true,
+      "display_name": "Headline"
+    },
+    "subline": {
+      "type": "textarea",
+      "pos": 2,
+      "display_name": "Subline"
+    },
+    "primary_cta": {
+      "type": "bloks",
+      "pos": 3,
+      "restrict_components": true,
+      "component_whitelist": ["button"],
+      "maximum": 1,
+      "display_name": "Primary CTA"
+    },
+    "secondary_cta": {
+      "type": "bloks",
+      "pos": 4,
+      "restrict_components": true,
+      "component_whitelist": ["button"],
+      "maximum": 1,
+      "display_name": "Secondary CTA"
+    },
+    "background_image": {
+      "type": "asset",
+      "pos": 5,
+      "display_name": "Background Image"
+    },
+    "layout": {
+      "type": "option",
+      "pos": 6,
+      "default_value": "center",
+      "display_name": "Content Layout",
+      "options": [
+        { "name": "Center", "value": "center" },
+        { "name": "Left", "value": "left" },
+        { "name": "Split", "value": "split" }
+      ]
+    },
+    "theme": {
+      "type": "option",
+      "pos": 7,
+      "default_value": "light",
+      "display_name": "Theme",
+      "options": [
+        { "name": "Light", "value": "light" },
+        { "name": "Dark", "value": "dark" },
+        { "name": "Teal Gradient", "value": "teal-gradient" }
+      ]
+    }
+  },
+  "preview_field": "headline"
+}

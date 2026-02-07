@@ -1,0 +1,50 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "team_member",
+  "display_name": "Team Member",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "name": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Name",
+      "description": "Team member full name",
+      "required": true
+    },
+    "role": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Role",
+      "description": "Job title or function",
+      "required": true
+    },
+    "bio": {
+      "type": "textarea",
+      "pos": 2,
+      "display_name": "Bio",
+      "description": "Short biography text"
+    },
+    "avatar": {
+      "type": "asset",
+      "pos": 3,
+      "display_name": "Avatar",
+      "description": "Profile image"
+    },
+    "linkedin": {
+      "type": "multilink",
+      "pos": 4,
+      "display_name": "LinkedIn Link",
+      "description": "LinkedIn profile URL"
+    },
+    "x_link": {
+      "type": "multilink",
+      "pos": 5,
+      "display_name": "X/Twitter Link",
+      "description": "X/Twitter profile URL"
+    }
+  },
+  "preview_field": "name"
+}

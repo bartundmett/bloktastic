@@ -1,0 +1,67 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "stats_section",
+  "display_name": "Stats Section",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Optional section title"
+    },
+    "stats": {
+      "type": "bloks",
+      "pos": 1,
+      "display_name": "Stats",
+      "description": "Collection of stat item bloks",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "stat_item"
+      ]
+    },
+    "alignment": {
+      "type": "option",
+      "pos": 2,
+      "display_name": "Alignment",
+      "default_value": "center",
+      "options": [
+        {
+          "name": "Left",
+          "value": "left"
+        },
+        {
+          "name": "Center",
+          "value": "center"
+        }
+      ],
+      "description": "Text alignment strategy"
+    },
+    "columns": {
+      "type": "option",
+      "pos": 3,
+      "display_name": "Columns",
+      "default_value": "4",
+      "options": [
+        {
+          "name": "2 Columns",
+          "value": "2"
+        },
+        {
+          "name": "3 Columns",
+          "value": "3"
+        },
+        {
+          "name": "4 Columns",
+          "value": "4"
+        }
+      ],
+      "description": "Desktop column count"
+    }
+  },
+  "preview_field": "headline"
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/blog-grid",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Blog Grid",
+  "description": "Recent articles section with teaser cards for content marketing pages.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "vue",
+      "nuxt",
+      "react",
+      "nextjs",
+      "astro",
+      "svelte",
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "blog",
+    "articles",
+    "content",
+    "teasers"
+  ],
+  "category": "sections",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": [
+      "@bloktastic/teaser"
+    ]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

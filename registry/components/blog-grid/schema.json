@@ -1,0 +1,49 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "blog_grid",
+  "display_name": "Blog Grid",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Section headline",
+      "required": true
+    },
+    "intro": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Intro",
+      "description": "Optional intro text"
+    },
+    "posts": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "Posts",
+      "description": "Collection of teaser cards",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "teaser"
+      ]
+    },
+    "show_view_all": {
+      "type": "boolean",
+      "pos": 3,
+      "display_name": "Show View All Link",
+      "default_value": true,
+      "description": "Render a view-all link button"
+    },
+    "view_all_link": {
+      "type": "multilink",
+      "pos": 4,
+      "display_name": "View All Link",
+      "description": "Destination for all posts"
+    }
+  },
+  "preview_field": "headline"
+}

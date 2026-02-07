@@ -1,0 +1,49 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "pricing_section",
+  "display_name": "Pricing Section",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Pricing section headline",
+      "required": true
+    },
+    "subline": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Subline",
+      "description": "Optional section copy"
+    },
+    "tiers": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "Pricing Tiers",
+      "description": "List of pricing tier items",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "pricing_tier"
+      ]
+    },
+    "show_annual_toggle": {
+      "type": "boolean",
+      "pos": 3,
+      "display_name": "Show Annual Toggle",
+      "default_value": false,
+      "description": "Display monthly/annual UI switch"
+    },
+    "note": {
+      "type": "text",
+      "pos": 4,
+      "display_name": "Footnote",
+      "description": "Optional legal/pricing note"
+    }
+  },
+  "preview_field": "headline"
+}

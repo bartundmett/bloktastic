@@ -1,0 +1,42 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "accordion",
+  "display_name": "Accordion",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "items": {
+      "type": "bloks",
+      "pos": 0,
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": ["accordion_item"],
+      "description": "Accordion entries"
+    },
+    "allow_multiple_open": {
+      "type": "boolean",
+      "pos": 1,
+      "default_value": false,
+      "description": "Allow multiple panels open"
+    },
+    "first_open": {
+      "type": "boolean",
+      "pos": 2,
+      "default_value": false,
+      "description": "Open first panel by default"
+    },
+    "style": {
+      "type": "option",
+      "pos": 3,
+      "default_value": "default",
+      "options": [
+        { "name": "Default", "value": "default" },
+        { "name": "Bordered", "value": "bordered" },
+        { "name": "Separated", "value": "separated" }
+      ]
+    }
+  },
+  "preview_field": null
+}

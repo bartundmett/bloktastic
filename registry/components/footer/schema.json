@@ -1,0 +1,46 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "footer",
+  "display_name": "Footer",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "brand_name": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Brand Name",
+      "description": "Brand or company name",
+      "required": true
+    },
+    "tagline": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Tagline",
+      "description": "Short footer tagline"
+    },
+    "link_columns": {
+      "type": "textarea",
+      "pos": 2,
+      "display_name": "Link Columns",
+      "description": "Define links as Column|Label|URL per line",
+      "required": true
+    },
+    "copyright_text": {
+      "type": "text",
+      "pos": 3,
+      "display_name": "Copyright Text",
+      "description": "Legal footer line",
+      "required": true
+    },
+    "show_social_links": {
+      "type": "boolean",
+      "pos": 4,
+      "display_name": "Show Social Links",
+      "default_value": true,
+      "description": "Render social link icons"
+    }
+  },
+  "preview_field": "brand_name"
+}

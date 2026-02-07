@@ -1,0 +1,94 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Contributing" description="How to add components, plugins, and improvements to Bloktastic.">
+  <h1>Contributing</h1>
+
+  <p>
+    Contributions are welcome across components, plugins, docs, and tooling.
+  </p>
+
+  <h2>Ways to Contribute</h2>
+
+  <ul>
+    <li>New component schemas and prompts</li>
+    <li>Plugin catalog entries</li>
+    <li>CLI improvements</li>
+    <li>Website and docs fixes</li>
+  </ul>
+
+  <h2>Development Setup</h2>
+
+  <pre><code>git clone https://github.com/bloktastic/bloktastic.git
+cd bloktastic
+pnpm install
+pnpm --filter website dev</code></pre>
+
+  <h2>Add a Component</h2>
+
+  <h3>1. Scaffold</h3>
+
+  <pre><code>bloktastic create component my-component --namespace your-github</code></pre>
+
+  <h3>2. Fill package files</h3>
+
+  <pre><code>registry/components/my-component/
+├── bloktastic.json
+├── schema.json
+├── prompt.md
+└── README.md</code></pre>
+
+  <h3>3. Validate</h3>
+
+  <pre><code>bloktastic validate registry/components/my-component</code></pre>
+
+  <h3>4. Submit PR</h3>
+
+  <p>Open a pull request and include screenshots or generated examples if relevant.</p>
+
+  <h2>Quality Checklist</h2>
+
+  <ul>
+    <li>Schema fields include clear names and descriptions</li>
+    <li>Prompt includes purpose, fields, visuals, accessibility, and edge cases</li>
+    <li>Manifest metadata is complete and valid</li>
+    <li>README contains install and usage guidance</li>
+  </ul>
+
+  <h2>Contributor Levels</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Level</th>
+        <th>Rights</th>
+        <th>Requirements</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Newcomer</td>
+        <td>PR-based contributions</td>
+        <td>GitHub account</td>
+      </tr>
+      <tr>
+        <td>Trusted</td>
+        <td>Direct publish under own namespace</td>
+        <td>3+ merged PRs</td>
+      </tr>
+      <tr>
+        <td>Core</td>
+        <td>Review and curate official packages</td>
+        <td>Maintainer invitation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Need Help?</h2>
+
+  <ul>
+    <li><a href="https://github.com/bloktastic/bloktastic/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a></li>
+    <li><a href="https://github.com/bloktastic/bloktastic/issues" target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
+  </ul>
+</DocsLayout>

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/cta-banner",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "CTA Banner",
+  "description": "Call-to-action section with compact copy, button, and optional supporting text.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "vue",
+      "nuxt",
+      "react",
+      "nextjs",
+      "astro",
+      "svelte",
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "cta",
+    "banner",
+    "conversion",
+    "action"
+  ],
+  "category": "sections",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": [
+      "@bloktastic/button"
+    ]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

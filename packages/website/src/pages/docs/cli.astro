@@ -1,0 +1,94 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="CLI Reference" description="Complete command reference for the Bloktastic CLI.">
+  <h1>CLI Reference</h1>
+
+  <p>
+    Reference for core commands in <code>@bloktastic/cli</code>.
+  </p>
+
+  <h2>Install</h2>
+
+  <pre><code>npm install -g @bloktastic/cli</code></pre>
+
+  <h2>Commands</h2>
+
+  <h3><code>bloktastic init</code></h3>
+  <pre><code>bloktastic init [options]
+
+Options:
+  -y, --yes           Skip prompts and use defaults
+  --space &lt;id&gt;        Storyblok space ID
+  --region &lt;region&gt;   eu | us | ca | ap</code></pre>
+
+  <h3><code>bloktastic add</code></h3>
+  <pre><code>bloktastic add &lt;package&gt; [options]
+
+Options:
+  --prompt-only       Return prompt only
+  --skip-schema       Skip Storyblok schema push
+  --force             Overwrite existing component</code></pre>
+
+  <h3><code>bloktastic search</code></h3>
+  <pre><code>bloktastic search &lt;query&gt; [options]
+
+Options:
+  -t, --type &lt;type&gt;      component | plugin | preset
+  -c, --category &lt;cat&gt;   Category filter
+  --tag &lt;tag&gt;            Tag filter</code></pre>
+
+  <h3><code>bloktastic list</code></h3>
+  <pre><code>bloktastic list [options]
+
+Options:
+  -t, --type &lt;type&gt;      Filter by package type
+  -c, --category &lt;cat&gt;   Filter by category
+  --installed            Show only installed packages</code></pre>
+
+  <h3><code>bloktastic info</code></h3>
+  <pre><code>bloktastic info &lt;package&gt;</code></pre>
+
+  <h3><code>bloktastic create</code></h3>
+  <pre><code>bloktastic create &lt;type&gt; &lt;name&gt; [options]
+
+Options:
+  -n, --namespace &lt;ns&gt;   Package namespace
+  -o, --output &lt;dir&gt;     Output directory</code></pre>
+
+  <h3><code>bloktastic validate</code></h3>
+  <pre><code>bloktastic validate &lt;path&gt; [--quiet]</code></pre>
+
+  <h2>Environment Variables</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>STORYBLOK_OAUTH_TOKEN</code></td>
+        <td>API token used for schema push operations.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Configuration</h2>
+
+  <pre><code>{`{
+  "$schema": "https://bloktastic.dev/schema/config.schema.json",
+  "space": {
+    "id": "123456",
+    "region": "eu"
+  },
+  "preferences": {
+    "defaultFramework": "astro",
+    "outputDirectory": "./components/storyblok",
+    "promptOutput": "clipboard"
+  }
+}`}</code></pre>
+</DocsLayout>

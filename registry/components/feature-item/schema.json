@@ -1,0 +1,38 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "feature_item",
+  "display_name": "Feature Item",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "icon": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Icon Name",
+      "description": "Icon identifier from your icon set"
+    },
+    "title": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Title",
+      "description": "Feature title",
+      "required": true
+    },
+    "description": {
+      "type": "textarea",
+      "pos": 2,
+      "display_name": "Description",
+      "description": "Short feature explanation",
+      "required": true
+    },
+    "link": {
+      "type": "multilink",
+      "pos": 3,
+      "display_name": "Link",
+      "description": "Optional link for more details"
+    }
+  },
+  "preview_field": "title"
+}

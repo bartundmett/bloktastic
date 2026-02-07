@@ -1,0 +1,65 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "navbar",
+  "display_name": "Navbar",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "logo_text": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Logo Text",
+      "description": "Brand text shown in navbar",
+      "required": true
+    },
+    "menu_links": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Menu Links",
+      "description": "One per line: Label|/path or Label|https://url",
+      "required": true
+    },
+    "cta_button": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "CTA Button",
+      "description": "Optional primary button in navbar",
+      "restrict_components": true,
+      "component_whitelist": [
+        "button"
+      ],
+      "maximum": 1
+    },
+    "sticky": {
+      "type": "boolean",
+      "pos": 3,
+      "display_name": "Sticky Header",
+      "default_value": true,
+      "description": "Keep navbar fixed to top on scroll"
+    },
+    "theme": {
+      "type": "option",
+      "pos": 4,
+      "display_name": "Theme",
+      "default_value": "light",
+      "options": [
+        {
+          "name": "Light",
+          "value": "light"
+        },
+        {
+          "name": "Dark",
+          "value": "dark"
+        },
+        {
+          "name": "Transparent",
+          "value": "transparent"
+        }
+      ],
+      "description": "Navbar color mode"
+    }
+  },
+  "preview_field": "logo_text"
+}

@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "title": "Bloktastic Package Manifest",
+  "description": "Schema for bloktastic.json package manifests",
+  "type": "object",
+  "required": ["name", "type", "version", "title", "description", "author"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^@[a-z0-9-]+/[a-z0-9-]+$",
+      "minLength": 5,
+      "maxLength": 60
+    },
+    "type": {
+      "type": "string",
+      "enum": ["component", "plugin", "preset"]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "author": {
+      "type": "object",
+      "required": ["name", "github"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "github": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9-]+$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "storyblok": {
+          "type": "string",
+          "pattern": "^[><=]*\\d+\\.\\d+\\.\\d+$"
+        },
+        "storyblokMax": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "frameworks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["vue", "nuxt", "react", "nextjs", "astro", "svelte", "agnostic"]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$",
+        "maxLength": 30
+      },
+      "maxItems": 10
+    },
+    "category": {
+      "type": "string",
+      "enum": ["sections", "content", "navigation", "forms", "media", "layout", "commerce", "field-plugins", "tool-plugins", "sidebar-plugins"]
+    },
+    "files": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "type": "string",
+          "default": "schema.json"
+        },
+        "prompt": {
+          "type": "string",
+          "default": "prompt.md"
+        },
+        "readme": {
+          "type": "string",
+          "default": "README.md"
+        }
+      },
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+$": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "bloktastic": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^@[a-z0-9-]+/[a-z0-9-]+$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "includes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^@[a-z0-9-]+/[a-z0-9-]+$"
+      },
+      "minItems": 1
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "string",
+          "format": "date"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["stable", "maintained", "unmaintained", "deprecated", "archived"]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "component" } }
+      },
+      "then": {
+        "properties": {
+          "files": {
+            "required": ["schema", "prompt"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "preset" } }
+      },
+      "then": {
+        "required": ["includes"]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

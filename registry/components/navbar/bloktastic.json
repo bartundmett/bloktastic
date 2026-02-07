@@ -1,0 +1,46 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/navbar",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Navbar",
+  "description": "Responsive navigation header with logo text, menu links, CTA, and mobile-friendly behavior.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "vue",
+      "nuxt",
+      "react",
+      "nextjs",
+      "astro",
+      "svelte",
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "navbar",
+    "navigation",
+    "header",
+    "menu"
+  ],
+  "category": "navigation",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": [
+      "@bloktastic/button"
+    ]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/faq-section",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "FAQ Section",
+  "description": "Frequently asked questions wrapper with optional intro and nested accordion block.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "vue",
+      "nuxt",
+      "react",
+      "nextjs",
+      "astro",
+      "svelte",
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "faq",
+    "questions",
+    "support",
+    "accordion"
+  ],
+  "category": "sections",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": [
+      "@bloktastic/accordion"
+    ]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

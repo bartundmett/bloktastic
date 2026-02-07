@@ -1,0 +1,45 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/accordion",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Accordion",
+  "description": "Expandable accordion component for FAQs, feature details, and progressive disclosure content.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "vue",
+      "nuxt",
+      "react",
+      "nextjs",
+      "astro",
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "accordion",
+    "faq",
+    "content",
+    "expandable"
+  ],
+  "category": "content",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": [
+      "@bloktastic/accordion-item"
+    ]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

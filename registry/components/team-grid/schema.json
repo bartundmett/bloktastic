@@ -1,0 +1,57 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "team_grid",
+  "display_name": "Team Grid",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Team section heading",
+      "required": true
+    },
+    "subline": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Subline",
+      "description": "Optional description"
+    },
+    "members": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "Members",
+      "description": "List of team member bloks",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "team_member"
+      ]
+    },
+    "columns": {
+      "type": "option",
+      "pos": 3,
+      "display_name": "Columns",
+      "default_value": "3",
+      "options": [
+        {
+          "name": "2 Columns",
+          "value": "2"
+        },
+        {
+          "name": "3 Columns",
+          "value": "3"
+        },
+        {
+          "name": "4 Columns",
+          "value": "4"
+        }
+      ],
+      "description": "Desktop column count"
+    }
+  },
+  "preview_field": "headline"
+}

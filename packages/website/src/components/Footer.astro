@@ -1,0 +1,42 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-borderline/80 bg-white/70">
+  <div class="container-shell grid gap-8 py-10 md:grid-cols-3">
+    <div>
+      <p class="text-base font-semibold text-graphite">Bloktastic</p>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">
+        Community registry for Storyblok bloks and plugins, built around a prompt-first workflow.
+      </p>
+    </div>
+
+    <div class="space-y-2 text-sm">
+      <p class="font-semibold text-graphite">Explore</p>
+      <a class="block text-slate-600 hover:text-graphite" href="/components">Component Library</a>
+      <a class="block text-slate-600 hover:text-graphite" href="/plugins">Plugin Directory</a>
+      <a class="block text-slate-600 hover:text-graphite" href="/docs">Documentation</a>
+    </div>
+
+    <div class="space-y-2 text-sm">
+      <p class="font-semibold text-graphite">Community</p>
+      <a
+        class="block text-slate-600 hover:text-graphite"
+        href="https://github.com/bloktastic/bloktastic"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub Repository
+      </a>
+      <a
+        class="block text-slate-600 hover:text-graphite"
+        href="https://github.com/bloktastic/bloktastic/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Issue Tracker
+      </a>
+      <p class="pt-2 text-xs uppercase tracking-[0.12em] text-slate-400">MIT License · {year}</p>
+    </div>
+  </div>
+</footer>

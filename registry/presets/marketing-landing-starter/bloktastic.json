@@ -1,0 +1,39 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/marketing-landing-starter",
+  "type": "preset",
+  "version": "1.0.0",
+  "title": "Marketing Landing Starter",
+  "description": "Starter preset for modern marketing and landing pages with navigation, social proof, pricing, FAQ, and footer sections.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "tags": [
+    "marketing",
+    "landing-page",
+    "starter"
+  ],
+  "files": {
+    "readme": "README.md"
+  },
+  "includes": [
+    "@bloktastic/announcement-bar",
+    "@bloktastic/navbar",
+    "@bloktastic/hero",
+    "@bloktastic/logo-cloud",
+    "@bloktastic/feature-grid",
+    "@bloktastic/stats-section",
+    "@bloktastic/testimonial-grid",
+    "@bloktastic/pricing-section",
+    "@bloktastic/faq-section",
+    "@bloktastic/cta-banner",
+    "@bloktastic/newsletter-section",
+    "@bloktastic/footer"
+  ],
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

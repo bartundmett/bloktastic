@@ -1,0 +1,31 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/hero",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Hero Section",
+  "description": "Full-width hero section with headline, rich description, background media, and CTA actions.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["vue", "nuxt", "react", "nextjs", "astro", "svelte", "agnostic"]
+  },
+  "tags": ["hero", "landing", "banner", "section"],
+  "category": "sections",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": ["@bloktastic/button", "@bloktastic/image"]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

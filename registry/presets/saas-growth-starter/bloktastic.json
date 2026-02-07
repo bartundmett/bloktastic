@@ -1,0 +1,37 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/saas-growth-starter",
+  "type": "preset",
+  "version": "1.0.0",
+  "title": "SaaS Growth Starter",
+  "description": "Preset focused on SaaS conversion pages with features, pricing tiers, testimonials, lead capture, and contact forms.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "tags": [
+    "saas",
+    "growth",
+    "conversion",
+    "starter"
+  ],
+  "files": {
+    "readme": "README.md"
+  },
+  "includes": [
+    "@bloktastic/navbar",
+    "@bloktastic/hero",
+    "@bloktastic/feature-grid",
+    "@bloktastic/cta-banner",
+    "@bloktastic/pricing-section",
+    "@bloktastic/testimonial-grid",
+    "@bloktastic/newsletter-section",
+    "@bloktastic/contact-section",
+    "@bloktastic/footer"
+  ],
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

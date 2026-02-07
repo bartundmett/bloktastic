@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bloktastic.dev/schema/config.schema.json",
+  "title": "Bloktastic Project Config",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "space": {
+      "type": "object",
+      "required": ["id", "region"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d+$"
+        },
+        "region": {
+          "type": "string",
+          "enum": ["eu", "us", "ca", "ap"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "defaultFramework": {
+          "type": "string",
+          "enum": ["vue", "nuxt", "react", "nextjs", "astro", "svelte", "agnostic"]
+        },
+        "outputDirectory": {
+          "type": "string"
+        },
+        "promptOutput": {
+          "type": "string",
+          "enum": ["clipboard", "file", "stdout"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "installedPackages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "installedAt"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^@[a-z0-9-]+/[a-z0-9-]+$"
+          },
+          "version": {
+            "type": "string"
+          },
+          "installedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

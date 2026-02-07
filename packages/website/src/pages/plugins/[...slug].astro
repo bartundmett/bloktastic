@@ -1,0 +1,108 @@
+---
+import PackageLayout from '../../layouts/PackageLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+import {
+  extractSlug,
+  getPackageDetails,
+  getPlugins,
+  type PackageEntry
+} from '../../lib/registry';
+
+interface Props {
+  entry: PackageEntry;
+}
+
+export function getStaticPaths() {
+  return getPlugins().map((entry) => ({
+    params: { slug: extractSlug(entry.path) },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props as Props;
+const details = getPackageDetails(entry.path);
+const manifest = details.manifest as Record<string, any> | null;
+---
+
+<PackageLayout title={entry.title} description={(manifest?.description as string) ?? entry.title}>
+  <nav class="mb-8 text-sm font-semibold text-slate-500">
+    <a href="/plugins" class="hover:text-graphite">Plugins</a>
+    <span class="mx-2">/</span>
+    <span class="text-graphite">{entry.name}</span>
+  </nav>
+
+  <header class="mb-8 grid gap-4 lg:grid-cols-[1fr_auto]">
+    <div>
+      <p class="mb-3 inline-flex rounded-full bg-paper px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600">
+        {entry.category ?? 'plugin'}
+      </p>
+      <h1 class="font-display text-4xl font-extrabold text-graphite">{entry.title}</h1>
+      <p class="mt-3 max-w-3xl text-slate-600">{manifest?.description ?? 'No description available.'}</p>
+    </div>
+
+    <aside class="glass-card h-fit p-5 text-sm">
+      <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Registry Status</p>
+      <p class="mt-2 text-base font-bold capitalize text-graphite">{entry.status ?? 'maintained'}</p>
+      {manifest?.links?.website && (
+        <a class="btn-secondary mt-3 w-full text-center" href={manifest.links.website as string} target="_blank" rel="noopener noreferrer">
+          Open Website
+        </a>
+      )}
+    </aside>
+  </header>
+
+  <div class="grid gap-8 xl:grid-cols-[1.55fr_0.95fr]">
+    <div class="space-y-8">
+      {details.readme && <CodeBlock title="README" language="md" code={details.readme} />}
+      {details.prompt && <CodeBlock title="Prompt" language="md" code={details.prompt} />}
+      {details.schema && <CodeBlock title="Schema" language="json" code={JSON.stringify(details.schema, null, 2)} />}
+    </div>
+
+    <aside class="space-y-6">
+      <section class="glass-card p-5">
+        <h2 class="mb-3 text-base font-bold text-graphite">Plugin Info</h2>
+        <dl class="space-y-3 text-sm">
+          <div>
+            <dt class="text-slate-500">Name</dt>
+            <dd class="font-semibold text-graphite">{entry.name}</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">Version</dt>
+            <dd class="font-mono text-graphite">{entry.version}</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">Maintainer</dt>
+            <dd class="text-graphite">
+              {manifest?.author?.github ? (
+                <a href={`https://github.com/${manifest.author.github}`} target="_blank" rel="noopener noreferrer" class="text-intelligence hover:underline">
+                  @{manifest.author.github}
+                </a>
+              ) : (
+                'Unknown'
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">Status</dt>
+            <dd class="capitalize text-graphite">{entry.status ?? 'maintained'}</dd>
+          </div>
+        </dl>
+      </section>
+
+      {manifest?.links && (
+        <section class="glass-card p-5">
+          <h2 class="mb-3 text-base font-bold text-graphite">Links</h2>
+          <ul class="space-y-2 text-sm">
+            {Object.entries(manifest.links).map(([label, value]) => (
+              <li>
+                <a href={value as string} class="text-intelligence hover:underline" target="_blank" rel="noopener noreferrer">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </aside>
+  </div>
+</PackageLayout>

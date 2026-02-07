@@ -1,0 +1,31 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/image",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Image",
+  "description": "Responsive image component with aspect ratio controls, caption, and lazy loading options.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["vue", "nuxt", "react", "nextjs", "astro", "svelte", "agnostic"]
+  },
+  "tags": ["image", "media", "responsive", "caption"],
+  "category": "media",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": []
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

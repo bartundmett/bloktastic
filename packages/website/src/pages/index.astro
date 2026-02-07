@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PackageCard from '../components/PackageCard.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import { extractSlug, getComponents, getPlugins, getStats } from '../lib/registry';
+
+const featuredComponents = getComponents().slice(0, 6);
+const featuredPlugins = getPlugins().slice(0, 2);
+const stats = getStats();
+
+const installSnippet = `# install CLI\nnpm install -g @bloktastic/cli\n\n# initialize your project\nbloktastic init\n\n# add a hero component\nbloktastic add @bloktastic/hero\n\n# generate code prompt only\nbloktastic add @bloktastic/hero --prompt-only`;
+
+const promises = [
+  'Storyblok-native schemas',
+  'Prompt-first frontend generation',
+  'Community-reviewed package metadata',
+  'CLI install flow with dependency support'
+];
+---
+
+<BaseLayout
+  title="Build with Joy"
+  description="Bloktastic helps teams ship Storyblok components faster with validated schemas and AI-ready prompts."
+>
+  <section class="container-shell relative overflow-hidden py-16 lg:py-24">
+    <div class="starfield absolute inset-0"></div>
+
+    <div class="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="relative z-10 animate-fadeUp">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-slate-600">
+          Community Registry for Storyblok
+        </p>
+
+        <h1 class="text-balance font-display text-5xl font-extrabold leading-[1.05] text-graphite lg:text-7xl">
+          Build with <span class="text-joy">Joy.</span>
+          <br />
+          Ship with <span class="text-intelligence">Confidence.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 lg:text-xl">
+          Install polished bloks in minutes, copy a framework-agnostic prompt, and generate implementation
+          code that fits your exact stack.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="/docs/getting-started" class="btn-primary">Start Building</a>
+          <a href="/components" class="btn-secondary">Browse Bloks</a>
+        </div>
+
+        <div class="mt-10 grid gap-3 sm:grid-cols-2">
+          {promises.map((item, index) => (
+            <div
+              class={`glass-card animate-fadeUp px-4 py-3 text-sm font-semibold text-slate-700`}
+              style={`animation-delay:${index * 120}ms`}
+            >
+              ✦ {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="relative z-10 animate-fadeUp lg:justify-self-end" style="animation-delay:200ms">
+        <div class="mesh-backdrop glass-card w-full max-w-xl p-6 lg:p-8">
+          <div class="grid grid-cols-2 gap-4">
+            <article class="rounded-2xl bg-white/90 p-4 shadow-card">
+              <p class="text-xs uppercase tracking-[0.12em] text-slate-500">Components</p>
+              <p class="mt-2 text-3xl font-black text-graphite">{stats.totalComponents}</p>
+            </article>
+            <article class="rounded-2xl bg-white/90 p-4 shadow-card">
+              <p class="text-xs uppercase tracking-[0.12em] text-slate-500">Plugins</p>
+              <p class="mt-2 text-3xl font-black text-graphite">{stats.totalPlugins}</p>
+            </article>
+            <article class="col-span-2 rounded-2xl bg-graphite p-4 text-white">
+              <p class="text-xs uppercase tracking-[0.12em] text-white/70">Last Registry Update</p>
+              <p class="mt-2 text-lg font-semibold">
+                {new Date(stats.lastUpdated).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric'
+                })}
+              </p>
+            </article>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-white/80 bg-white/85 p-4">
+            <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Install Command</p>
+            <code class="mt-2 block font-mono text-sm text-intelligence">bloktastic add @bloktastic/hero</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-shell py-12">
+    <div class="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold text-graphite lg:text-4xl">Fast install workflow</h2>
+        <p class="mt-3 max-w-2xl text-slate-600">
+          Bloktastic keeps the install process simple: pull from registry, push to Storyblok, then use your AI tool
+          for framework-specific code generation.
+        </p>
+
+        <div class="mt-6">
+          <CodeBlock code={installSnippet} language="bash" title="Terminal" />
+        </div>
+      </div>
+
+      <div class="glass-card p-6 lg:p-8">
+        <h3 class="text-xl font-bold text-graphite">How it works</h3>
+        <ol class="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+          <li class="rounded-2xl bg-paper p-4">
+            <strong class="block text-graphite">1. Select a package</strong>
+            Choose from community bloks and vetted plugins.
+          </li>
+          <li class="rounded-2xl bg-paper p-4">
+            <strong class="block text-graphite">2. Install via CLI</strong>
+            Push schema to Storyblok and resolve dependencies automatically.
+          </li>
+          <li class="rounded-2xl bg-paper p-4">
+            <strong class="block text-graphite">3. Generate frontend code</strong>
+            Use the included prompt to produce code for Vue, React, Astro, or any stack.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-shell py-12">
+    <div class="mb-6 flex items-end justify-between gap-4">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold text-graphite">Featured bloks</h2>
+        <p class="mt-2 text-slate-600">Starter building blocks for your first production setup.</p>
+      </div>
+      <a href="/components" class="btn-secondary">See all bloks</a>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {featuredComponents.map((entry) => (
+        <PackageCard entry={entry} href={`/components/${extractSlug(entry.path)}`} kind="component" />
+      ))}
+    </div>
+  </section>
+
+  <section class="container-shell py-12">
+    <div class="mb-6 flex items-end justify-between gap-4">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold text-graphite">Sample plugins</h2>
+        <p class="mt-2 text-slate-600">Curated external tools to extend the editor experience.</p>
+      </div>
+      <a href="/plugins" class="btn-secondary">Browse plugins</a>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      {featuredPlugins.map((entry) => (
+        <PackageCard entry={entry} href={`/plugins/${extractSlug(entry.path)}`} kind="plugin" />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

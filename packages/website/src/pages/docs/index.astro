@@ -1,0 +1,57 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Documentation" description="Learn how Bloktastic works, how to install components, and how to contribute.">
+  <h1>Documentation</h1>
+
+  <p>
+    Bloktastic is an open registry for Storyblok components and plugins. It combines reusable schemas with
+    high-quality prompts so teams can generate framework-specific frontend code quickly.
+  </p>
+
+  <h2>What You Get</h2>
+
+  <ul>
+    <li><strong>Installable Bloks</strong> with manifest metadata and Storyblok schema files.</li>
+    <li><strong>Prompt-First Workflow</strong> for AI-assisted code generation in your stack.</li>
+    <li><strong>CLI Tools</strong> to search, install, and validate packages.</li>
+    <li><strong>Curated Plugins</strong> for editor field and workflow enhancements.</li>
+  </ul>
+
+  <h2>Quick Links</h2>
+
+  <div class="not-prose grid gap-4 sm:grid-cols-2">
+    <a href="/docs/getting-started" class="glass-card block p-4">
+      <p class="text-sm font-bold text-graphite">Getting Started</p>
+      <p class="mt-2 text-sm text-slate-600">Install CLI, initialize config, and add your first blok.</p>
+    </a>
+
+    <a href="/docs/cli" class="glass-card block p-4">
+      <p class="text-sm font-bold text-graphite">CLI Reference</p>
+      <p class="mt-2 text-sm text-slate-600">Complete command options for install and discovery.</p>
+    </a>
+
+    <a href="/docs/contributing" class="glass-card block p-4">
+      <p class="text-sm font-bold text-graphite">Contributing</p>
+      <p class="mt-2 text-sm text-slate-600">Submit new components, plugins, docs, and improvements.</p>
+    </a>
+
+    <a href="/components" class="glass-card block p-4">
+      <p class="text-sm font-bold text-graphite">Browse Components</p>
+      <p class="mt-2 text-sm text-slate-600">Explore currently available starter bloks.</p>
+    </a>
+  </div>
+
+  <h2>Prompt-First Model</h2>
+
+  <ol>
+    <li><strong>Schema</strong>: pushed to Storyblok as component definition.</li>
+    <li><strong>Prompt</strong>: guides AI toward a production-ready implementation with accessibility and edge cases.</li>
+  </ol>
+
+  <p>
+    This avoids shipping dozens of framework templates. Instead, each team generates code that matches its own
+    architecture conventions.
+  </p>
+</DocsLayout>

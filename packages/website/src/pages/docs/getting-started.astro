@@ -1,0 +1,72 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Getting Started" description="Set up Bloktastic and install your first Storyblok component.">
+  <h1>Getting Started</h1>
+
+  <p>
+    This guide covers the shortest path from empty project to first installed component.
+  </p>
+
+  <h2>Prerequisites</h2>
+
+  <ul>
+    <li>Node.js 20 or newer</li>
+    <li>pnpm (recommended) or npm</li>
+    <li>Storyblok personal access token</li>
+    <li>A Storyblok space ID</li>
+  </ul>
+
+  <h2>1. Install CLI</h2>
+
+  <pre><code>npm install -g @bloktastic/cli</code></pre>
+
+  <p>Or run directly with:</p>
+
+  <pre><code>npx @bloktastic/cli &lt;command&gt;</code></pre>
+
+  <h2>2. Set Token</h2>
+
+  <pre><code>export STORYBLOK_OAUTH_TOKEN="your-token"</code></pre>
+
+  <p>Generate token in Storyblok Account Settings if you do not have one yet.</p>
+
+  <h2>3. Initialize Project</h2>
+
+  <pre><code>bloktastic init</code></pre>
+
+  <p>This creates <code>bloktastic.config.json</code> with space, region, and prompt preferences.</p>
+
+  <h2>4. Add a Component</h2>
+
+  <pre><code>bloktastic add @bloktastic/hero</code></pre>
+
+  <p>The command will:</p>
+
+  <ol>
+    <li>Fetch package metadata from registry</li>
+    <li>Push schema to your Storyblok space</li>
+    <li>Resolve dependencies</li>
+    <li>Return or copy prompt text</li>
+  </ol>
+
+  <h2>5. Generate Frontend Code</h2>
+
+  <p>Paste the prompt in your AI tool with your local stack context, for example:</p>
+
+  <pre><code>Project stack:
+- Astro
+- Tailwind CSS
+- TypeScript
+
+Please generate a production-ready Storyblok Hero component.</code></pre>
+
+  <h2>Next</h2>
+
+  <ul>
+    <li><a href="/components">Browse more components</a></li>
+    <li><a href="/docs/cli">Check all CLI commands</a></li>
+    <li><a href="/docs/contributing">Contribute a new package</a></li>
+  </ul>
+</DocsLayout>

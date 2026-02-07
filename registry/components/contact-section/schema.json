@@ -1,0 +1,59 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "contact_section",
+  "display_name": "Contact Section",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "headline": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Headline",
+      "description": "Contact section heading",
+      "required": true
+    },
+    "intro": {
+      "type": "textarea",
+      "pos": 1,
+      "display_name": "Intro",
+      "description": "Short context text"
+    },
+    "submit_label": {
+      "type": "text",
+      "pos": 2,
+      "display_name": "Submit Label",
+      "description": "Submit button text",
+      "required": true
+    },
+    "include_company": {
+      "type": "boolean",
+      "pos": 3,
+      "display_name": "Include Company Field",
+      "default_value": true,
+      "description": "Show company name field"
+    },
+    "include_phone": {
+      "type": "boolean",
+      "pos": 4,
+      "display_name": "Include Phone Field",
+      "default_value": false,
+      "description": "Show phone field"
+    },
+    "include_topic": {
+      "type": "boolean",
+      "pos": 5,
+      "display_name": "Include Topic Select",
+      "default_value": false,
+      "description": "Show inquiry topic dropdown"
+    },
+    "success_message": {
+      "type": "text",
+      "pos": 6,
+      "display_name": "Success Message",
+      "description": "Message after successful submit"
+    }
+  },
+  "preview_field": "headline"
+}

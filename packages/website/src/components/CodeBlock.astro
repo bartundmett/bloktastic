@@ -1,0 +1,17 @@
+---
+interface Props {
+  code: string;
+  language?: string;
+  title?: string;
+}
+
+const { code, language = 'txt', title } = Astro.props;
+---
+
+<section class="overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-950 text-slate-100 shadow-card">
+  <header class="flex items-center justify-between border-b border-slate-800 px-4 py-2">
+    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">{title ?? language}</p>
+    <p class="text-[11px] font-mono text-slate-500">{language}</p>
+  </header>
+  <pre class="overflow-x-auto p-4 text-sm"><code>{code}</code></pre>
+</section>

@@ -1,0 +1,52 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "teaser",
+  "display_name": "Teaser",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "eyebrow": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Eyebrow"
+    },
+    "headline": {
+      "type": "text",
+      "pos": 1,
+      "required": true,
+      "display_name": "Headline"
+    },
+    "body": {
+      "type": "textarea",
+      "pos": 2,
+      "display_name": "Body"
+    },
+    "image": {
+      "type": "bloks",
+      "pos": 3,
+      "restrict_components": true,
+      "component_whitelist": ["image"],
+      "maximum": 1
+    },
+    "cta": {
+      "type": "bloks",
+      "pos": 4,
+      "restrict_components": true,
+      "component_whitelist": ["button"],
+      "maximum": 1
+    },
+    "theme": {
+      "type": "option",
+      "pos": 5,
+      "default_value": "light",
+      "options": [
+        { "name": "Light", "value": "light" },
+        { "name": "Dark", "value": "dark" },
+        { "name": "Gradient", "value": "gradient" }
+      ]
+    }
+  },
+  "preview_field": "headline"
+}

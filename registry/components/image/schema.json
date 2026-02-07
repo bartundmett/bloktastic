@@ -1,0 +1,51 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "image",
+  "display_name": "Image",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "asset": {
+      "type": "asset",
+      "pos": 0,
+      "required": true,
+      "display_name": "Image"
+    },
+    "alt": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Alt Text",
+      "description": "Fallback if asset alt is missing"
+    },
+    "caption": {
+      "type": "textarea",
+      "pos": 2,
+      "display_name": "Caption"
+    },
+    "ratio": {
+      "type": "option",
+      "pos": 3,
+      "display_name": "Aspect Ratio",
+      "default_value": "auto",
+      "options": [
+        { "name": "Auto", "value": "auto" },
+        { "name": "16:9", "value": "16-9" },
+        { "name": "4:3", "value": "4-3" },
+        { "name": "1:1", "value": "1-1" }
+      ]
+    },
+    "loading": {
+      "type": "option",
+      "pos": 4,
+      "display_name": "Loading",
+      "default_value": "lazy",
+      "options": [
+        { "name": "Lazy", "value": "lazy" },
+        { "name": "Eager", "value": "eager" }
+      ]
+    }
+  },
+  "preview_field": "caption"
+}

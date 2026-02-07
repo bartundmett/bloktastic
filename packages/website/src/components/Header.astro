@@ -1,0 +1,86 @@
+---
+import LogoMark from './LogoMark.astro';
+
+const navItems = [
+  { href: '/components', label: 'Bloks' },
+  { href: '/plugins', label: 'Plugins' },
+  { href: '/docs', label: 'Docs' }
+];
+
+const path = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 border-b border-white/80 bg-white/75 backdrop-blur-xl">
+  <div class="container-shell flex h-20 items-center justify-between gap-6">
+    <LogoMark />
+
+    <nav class="hidden items-center gap-2 md:flex">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`ghost-link ${path.startsWith(item.href) ? 'bg-paper text-graphite' : ''}`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-3 md:flex">
+      <a class="btn-secondary" href="/docs/getting-started">Quick Start</a>
+      <a
+        class="btn-primary"
+        href="https://github.com/bloktastic/bloktastic"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+    </div>
+
+    <button
+      type="button"
+      id="mobile-nav-toggle"
+      class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-borderline bg-white md:hidden"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="text-xl font-bold text-graphite">≡</span>
+    </button>
+  </div>
+
+  <div id="mobile-nav" class="hidden border-t border-borderline bg-white md:hidden">
+    <nav class="container-shell flex flex-col gap-1 py-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`rounded-lg px-4 py-3 text-sm font-semibold ${path.startsWith(item.href) ? 'bg-paper text-graphite' : 'text-slate-600'}`}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a class="btn-secondary mt-2 text-center" href="/docs/getting-started">Quick Start</a>
+      <a
+        class="btn-primary mt-2 text-center"
+        href="https://github.com/bloktastic/bloktastic"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

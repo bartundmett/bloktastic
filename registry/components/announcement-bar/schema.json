@@ -1,0 +1,66 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "announcement_bar",
+  "display_name": "Announcement Bar",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "enabled": {
+      "type": "boolean",
+      "pos": 0,
+      "display_name": "Enabled",
+      "default_value": true,
+      "description": "Show or hide the announcement bar"
+    },
+    "message": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Message",
+      "description": "Primary announcement copy",
+      "required": true
+    },
+    "link": {
+      "type": "multilink",
+      "pos": 2,
+      "display_name": "Link",
+      "description": "Optional announcement link destination"
+    },
+    "cta_label": {
+      "type": "text",
+      "pos": 3,
+      "display_name": "CTA Label",
+      "description": "Optional short link label"
+    },
+    "dismissible": {
+      "type": "boolean",
+      "pos": 4,
+      "display_name": "Dismissible",
+      "default_value": false,
+      "description": "Allow user to dismiss this bar"
+    },
+    "theme": {
+      "type": "option",
+      "pos": 5,
+      "display_name": "Theme",
+      "default_value": "brand",
+      "options": [
+        {
+          "name": "Brand",
+          "value": "brand"
+        },
+        {
+          "name": "Neutral",
+          "value": "neutral"
+        },
+        {
+          "name": "Dark",
+          "value": "dark"
+        }
+      ],
+      "description": "Visual style"
+    }
+  },
+  "preview_field": "message"
+}

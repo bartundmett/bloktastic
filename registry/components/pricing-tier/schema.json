@@ -1,0 +1,59 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "pricing_tier",
+  "display_name": "Pricing Tier",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "plan_name": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Plan Name",
+      "description": "Tier name, e.g. Pro",
+      "required": true
+    },
+    "price": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Price",
+      "description": "Price text, e.g. $29",
+      "required": true
+    },
+    "billing_period": {
+      "type": "text",
+      "pos": 2,
+      "display_name": "Billing Period",
+      "description": "Period text, e.g. /month"
+    },
+    "feature_list": {
+      "type": "textarea",
+      "pos": 3,
+      "display_name": "Feature List",
+      "description": "One feature per line",
+      "required": true
+    },
+    "cta_label": {
+      "type": "text",
+      "pos": 4,
+      "display_name": "CTA Label",
+      "description": "Button label",
+      "required": true
+    },
+    "cta_link": {
+      "type": "multilink",
+      "pos": 5,
+      "display_name": "CTA Link",
+      "description": "Button destination"
+    },
+    "highlighted": {
+      "type": "boolean",
+      "pos": 6,
+      "display_name": "Highlighted",
+      "default_value": false,
+      "description": "Visually emphasize this tier"
+    }
+  },
+  "preview_field": "plan_name"
+}

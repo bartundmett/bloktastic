@@ -1,0 +1,497 @@
+{
+  "$schema": "https://bloktastic.dev/schema/registry.schema.json",
+  "name": "bloktastic",
+  "version": "1.0.0",
+  "homepage": "https://bloktastic.dev",
+  "repository": "https://github.com/bloktastic/bloktastic",
+  "packages": {
+    "components": [
+      {
+        "name": "@bloktastic/accordion",
+        "path": "components/accordion",
+        "version": "1.0.0",
+        "title": "Accordion",
+        "tags": [
+          "accordion",
+          "faq",
+          "content",
+          "expandable"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/accordion-item",
+        "path": "components/accordion-item",
+        "version": "1.0.0",
+        "title": "Accordion Item",
+        "tags": [
+          "accordion",
+          "item",
+          "faq",
+          "content"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/announcement-bar",
+        "path": "components/announcement-bar",
+        "version": "1.0.0",
+        "title": "Announcement Bar",
+        "tags": [
+          "banner",
+          "announcement",
+          "marketing",
+          "header"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/blog-grid",
+        "path": "components/blog-grid",
+        "version": "1.0.0",
+        "title": "Blog Grid",
+        "tags": [
+          "blog",
+          "articles",
+          "content",
+          "teasers"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/button",
+        "path": "components/button",
+        "version": "1.0.0",
+        "title": "Button",
+        "tags": [
+          "button",
+          "cta",
+          "action",
+          "ui"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/contact-section",
+        "path": "components/contact-section",
+        "version": "1.0.0",
+        "title": "Contact Section",
+        "tags": [
+          "contact",
+          "form",
+          "lead",
+          "support"
+        ],
+        "category": "forms",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/cta-banner",
+        "path": "components/cta-banner",
+        "version": "1.0.0",
+        "title": "CTA Banner",
+        "tags": [
+          "cta",
+          "banner",
+          "conversion",
+          "action"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/faq-section",
+        "path": "components/faq-section",
+        "version": "1.0.0",
+        "title": "FAQ Section",
+        "tags": [
+          "faq",
+          "questions",
+          "support",
+          "accordion"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/feature-grid",
+        "path": "components/feature-grid",
+        "version": "1.0.0",
+        "title": "Feature Grid",
+        "tags": [
+          "features",
+          "grid",
+          "benefits",
+          "marketing"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/feature-item",
+        "path": "components/feature-item",
+        "version": "1.0.0",
+        "title": "Feature Item",
+        "tags": [
+          "feature",
+          "item",
+          "benefit",
+          "card"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/footer",
+        "path": "components/footer",
+        "version": "1.0.0",
+        "title": "Footer",
+        "tags": [
+          "footer",
+          "navigation",
+          "legal",
+          "links"
+        ],
+        "category": "navigation",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/hero",
+        "path": "components/hero",
+        "version": "1.0.0",
+        "title": "Hero Section",
+        "tags": [
+          "hero",
+          "landing",
+          "banner",
+          "section"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/image",
+        "path": "components/image",
+        "version": "1.0.0",
+        "title": "Image",
+        "tags": [
+          "image",
+          "media",
+          "responsive",
+          "caption"
+        ],
+        "category": "media",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/logo-cloud",
+        "path": "components/logo-cloud",
+        "version": "1.0.0",
+        "title": "Logo Cloud",
+        "tags": [
+          "logos",
+          "social-proof",
+          "partners",
+          "brands"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/navbar",
+        "path": "components/navbar",
+        "version": "1.0.0",
+        "title": "Navbar",
+        "tags": [
+          "navbar",
+          "navigation",
+          "header",
+          "menu"
+        ],
+        "category": "navigation",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/newsletter-section",
+        "path": "components/newsletter-section",
+        "version": "1.0.0",
+        "title": "Newsletter Section",
+        "tags": [
+          "newsletter",
+          "email",
+          "lead",
+          "signup"
+        ],
+        "category": "forms",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/pricing-section",
+        "path": "components/pricing-section",
+        "version": "1.0.0",
+        "title": "Pricing Section",
+        "tags": [
+          "pricing",
+          "plans",
+          "conversion",
+          "saas"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/pricing-tier",
+        "path": "components/pricing-tier",
+        "version": "1.0.0",
+        "title": "Pricing Tier",
+        "tags": [
+          "pricing",
+          "tier",
+          "plan",
+          "saas"
+        ],
+        "category": "commerce",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/stat-item",
+        "path": "components/stat-item",
+        "version": "1.0.0",
+        "title": "Stat Item",
+        "tags": [
+          "stats",
+          "kpi",
+          "metric",
+          "numbers"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/stats-section",
+        "path": "components/stats-section",
+        "version": "1.0.0",
+        "title": "Stats Section",
+        "tags": [
+          "stats",
+          "kpi",
+          "metrics",
+          "social-proof"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/team-grid",
+        "path": "components/team-grid",
+        "version": "1.0.0",
+        "title": "Team Grid",
+        "tags": [
+          "team",
+          "about",
+          "people",
+          "company"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/team-member",
+        "path": "components/team-member",
+        "version": "1.0.0",
+        "title": "Team Member",
+        "tags": [
+          "team",
+          "profile",
+          "member",
+          "about"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/teaser",
+        "path": "components/teaser",
+        "version": "1.0.0",
+        "title": "Teaser Card",
+        "tags": [
+          "card",
+          "teaser",
+          "promo",
+          "content"
+        ],
+        "category": "content",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/testimonial-grid",
+        "path": "components/testimonial-grid",
+        "version": "1.0.0",
+        "title": "Testimonial Grid",
+        "tags": [
+          "testimonials",
+          "social-proof",
+          "reviews",
+          "quotes"
+        ],
+        "category": "sections",
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/testimonial-item",
+        "path": "components/testimonial-item",
+        "version": "1.0.0",
+        "title": "Testimonial Item",
+        "tags": [
+          "testimonial",
+          "quote",
+          "social-proof",
+          "review"
+        ],
+        "category": "content",
+        "status": "stable"
+      }
+    ],
+    "plugins": [
+      {
+        "name": "@bloktastic/advanced-color-picker",
+        "path": "plugins/advanced-color-picker",
+        "version": "1.0.0",
+        "title": "Advanced Color Picker",
+        "tags": [
+          "plugin",
+          "field",
+          "color",
+          "design-tokens"
+        ],
+        "category": "field-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/analytics-pixel-manager",
+        "path": "plugins/analytics-pixel-manager",
+        "version": "1.0.0",
+        "title": "Analytics Pixel Manager",
+        "tags": [
+          "analytics",
+          "pixel",
+          "tracking",
+          "marketing"
+        ],
+        "category": "sidebar-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/cookie-consent-manager",
+        "path": "plugins/cookie-consent-manager",
+        "version": "1.0.0",
+        "title": "Cookie Consent Manager",
+        "tags": [
+          "cookie",
+          "consent",
+          "gdpr",
+          "compliance"
+        ],
+        "category": "tool-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/icon-picker-pro",
+        "path": "plugins/icon-picker-pro",
+        "version": "1.0.0",
+        "title": "Icon Picker Pro",
+        "tags": [
+          "icons",
+          "field-plugin",
+          "ui",
+          "editor"
+        ],
+        "category": "field-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/seo-auditor",
+        "path": "plugins/seo-auditor",
+        "version": "0.9.0",
+        "title": "SEO Auditor",
+        "tags": [
+          "plugin",
+          "sidebar",
+          "seo",
+          "analysis"
+        ],
+        "category": "sidebar-plugins",
+        "status": "maintained"
+      }
+    ],
+    "presets": [
+      {
+        "name": "@bloktastic/blog-starter",
+        "path": "presets/blog-starter",
+        "version": "1.0.0",
+        "title": "Blog Starter Preset",
+        "tags": [
+          "preset",
+          "starter",
+          "blog"
+        ],
+        "category": null,
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/marketing-landing-starter",
+        "path": "presets/marketing-landing-starter",
+        "version": "1.0.0",
+        "title": "Marketing Landing Starter",
+        "tags": [
+          "marketing",
+          "landing-page",
+          "starter"
+        ],
+        "category": null,
+        "status": "stable"
+      },
+      {
+        "name": "@bloktastic/saas-growth-starter",
+        "path": "presets/saas-growth-starter",
+        "version": "1.0.0",
+        "title": "SaaS Growth Starter",
+        "tags": [
+          "saas",
+          "growth",
+          "conversion",
+          "starter"
+        ],
+        "category": null,
+        "status": "stable"
+      }
+    ]
+  },
+  "categories": {
+    "components": [
+      "sections",
+      "content",
+      "navigation",
+      "forms",
+      "media",
+      "layout",
+      "commerce"
+    ],
+    "plugins": [
+      "field-plugins",
+      "tool-plugins",
+      "sidebar-plugins"
+    ]
+  },
+  "stats": {
+    "totalComponents": 25,
+    "totalPlugins": 5,
+    "totalPresets": 3,
+    "lastUpdated": "2026-02-07T20:14:35.622Z"
+  }
+}

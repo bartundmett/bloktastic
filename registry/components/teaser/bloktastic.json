@@ -1,0 +1,31 @@
+{
+  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "name": "@bloktastic/teaser",
+  "type": "component",
+  "version": "1.0.0",
+  "title": "Teaser Card",
+  "description": "Card-style teaser with image, text, badge, and optional CTA button.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["vue", "nuxt", "react", "nextjs", "astro", "svelte", "agnostic"]
+  },
+  "tags": ["card", "teaser", "promo", "content"],
+  "category": "content",
+  "files": {
+    "schema": "schema.json",
+    "prompt": "prompt.md",
+    "readme": "README.md"
+  },
+  "dependencies": {
+    "bloktastic": ["@bloktastic/button", "@bloktastic/image"]
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "stable"
+  }
+}

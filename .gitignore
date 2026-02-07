@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# builds
+dist
+build
+coverage
+.astro
+
+# env
+.env
+.env.*
+
+# system
+.DS_Store
+*.log
+
+# generated
+registry/registry.generated.json

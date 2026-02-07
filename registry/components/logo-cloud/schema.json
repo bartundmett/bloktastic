@@ -1,0 +1,61 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "logo_cloud",
+  "display_name": "Logo Cloud",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "heading": {
+      "type": "text",
+      "pos": 0,
+      "display_name": "Heading",
+      "description": "Optional section heading"
+    },
+    "logos": {
+      "type": "bloks",
+      "pos": 1,
+      "display_name": "Logos",
+      "description": "Logo items rendered as image components",
+      "required": true,
+      "restrict_components": true,
+      "component_whitelist": [
+        "image"
+      ]
+    },
+    "columns": {
+      "type": "option",
+      "pos": 2,
+      "display_name": "Columns",
+      "default_value": "5",
+      "options": [
+        {
+          "name": "3 Columns",
+          "value": "3"
+        },
+        {
+          "name": "4 Columns",
+          "value": "4"
+        },
+        {
+          "name": "5 Columns",
+          "value": "5"
+        },
+        {
+          "name": "6 Columns",
+          "value": "6"
+        }
+      ],
+      "description": "Number of columns on desktop"
+    },
+    "grayscale": {
+      "type": "boolean",
+      "pos": 3,
+      "display_name": "Grayscale Logos",
+      "default_value": true,
+      "description": "Render logos in grayscale until hover"
+    }
+  },
+  "preview_field": "heading"
+}

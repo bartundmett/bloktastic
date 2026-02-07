@@ -1,0 +1,59 @@
+{
+  "$bloktastic": {
+    "version": "1.0.0"
+  },
+  "name": "testimonial_item",
+  "display_name": "Testimonial Item",
+  "is_root": false,
+  "is_nestable": true,
+  "schema": {
+    "quote": {
+      "type": "textarea",
+      "pos": 0,
+      "display_name": "Quote",
+      "description": "Customer quote text",
+      "required": true
+    },
+    "author_name": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "Author Name",
+      "description": "Customer name",
+      "required": true
+    },
+    "author_role": {
+      "type": "text",
+      "pos": 2,
+      "display_name": "Author Role",
+      "description": "Title and company"
+    },
+    "author_image": {
+      "type": "asset",
+      "pos": 3,
+      "display_name": "Author Image",
+      "description": "Optional avatar image"
+    },
+    "rating": {
+      "type": "option",
+      "pos": 4,
+      "display_name": "Rating",
+      "default_value": "none",
+      "options": [
+        {
+          "name": "No Rating",
+          "value": "none"
+        },
+        {
+          "name": "5 Stars",
+          "value": "5"
+        },
+        {
+          "name": "4 Stars",
+          "value": "4"
+        }
+      ],
+      "description": "Optional star rating"
+    }
+  },
+  "preview_field": "author_name"
+}
