@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/bartundmett/bloktastic/compare/cli-v0.1.1...cli-v0.1.2) (2026-02-08)
+
+
+### Bug Fixes
+
+* correct GitHub URLs, registry URL, and hero icons ([be63bf0](https://github.com/bartundmett/bloktastic/commit/be63bf0e66fbaad67d013ae0d92ec3f0e44d7e1e))
+
 ## [0.1.1](https://github.com/bartundmett/bloktastic/compare/cli-v0.1.0...cli-v0.1.1) (2026-02-08)
 
 
