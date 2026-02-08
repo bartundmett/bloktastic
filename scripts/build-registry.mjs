@@ -104,7 +104,7 @@ async function main() {
     name: 'bloktastic',
     version: '1.0.0',
     homepage: 'https://bloktastic.com',
-    repository: 'https://github.com/bloktastic/bloktastic',
+    repository: 'https://github.com/bartundmett/bloktastic',
     packages: {
       components,
       plugins,

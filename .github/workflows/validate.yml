@@ -92,6 +92,7 @@ jobs:
           let hasDuplicates = false;
 
           for (const root of roots) {
+            if (!fs.existsSync(root)) continue;
             for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
               if (!entry.isDirectory()) continue;
               const manifestPath = path.join(root, entry.name, 'bloktastic.json');
@@ -120,7 +121,7 @@ jobs:
           while IFS= read -r pkg; do
             echo "Validating ${pkg}"
             node packages/cli/dist/index.js validate "${pkg}" --quiet >/dev/null
-          done < <(find registry/components registry/plugins registry/presets -mindepth 1 -maxdepth 1 -type d | sort)
+          done < <(find registry/components registry/plugins registry/presets -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
 
       - name: Verify registry build command
         run: pnpm registry:build
