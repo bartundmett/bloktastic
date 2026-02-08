@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/okta-sso-role-sync",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Okta SSO Role Sync",
+  "description": "Map Okta groups to Storyblok roles and spaces for centralized enterprise access governance.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "okta",
+    "sso",
+    "rbac",
+    "identity"
+  ],
+  "category": "space-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.okta.com/integrations/",
+    "docs": "https://developer.okta.com/docs/concepts/sso/",
+    "storyblok": "https://www.storyblok.com/docs/plugins/space-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

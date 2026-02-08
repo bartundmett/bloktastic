@@ -1,10 +1,10 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/analytics-pixel-manager",
   "type": "plugin",
   "version": "1.0.0",
   "title": "Analytics Pixel Manager",
-  "description": "Sidebar plugin to manage GTM, Meta Pixel, and ad platform script snippets safely.",
+  "description": "Space plugin to manage GTM, Meta Pixel, and ad platform script snippets safely.",
   "author": {
     "name": "Bloktastic",
     "github": "bloktastic"
@@ -21,13 +21,14 @@
     "tracking",
     "marketing"
   ],
-  "category": "sidebar-plugins",
+  "category": "space-plugins",
   "files": {
     "readme": "README.md"
   },
   "links": {
     "website": "https://github.com/bloktastic/analytics-pixel-manager",
-    "docs": "https://github.com/bloktastic/analytics-pixel-manager#readme"
+    "docs": "https://github.com/bloktastic/analytics-pixel-manager#readme",
+    "storyblok": "https://www.storyblok.com/docs/plugins/space-plugins"
   },
   "metadata": {
     "created": "2026-02-07",

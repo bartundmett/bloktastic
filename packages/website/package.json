@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "predev": "node ../../scripts/build-registry.mjs",
     "dev": "astro dev",
+    "prebuild": "node ../../scripts/build-registry.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check"

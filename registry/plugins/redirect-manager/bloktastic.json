@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/redirect-manager",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Redirect Manager",
+  "description": "Manage 301 and 302 URL redirects for SEO migrations and campaign landing URL changes.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "redirects",
+    "seo",
+    "migration",
+    "routing"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.storyblok.com/docs/plugins/tool-plugins",
+    "docs": "https://www.storyblok.com/docs/api/content-delivery/v2/links/retrieve-multiple-links",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

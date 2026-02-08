@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/search-index-connector",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Search Index Connector",
+  "description": "Publish content updates to external search engines like Algolia for instant site search.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "search",
+    "algolia",
+    "indexing",
+    "discovery"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.storyblok.com/docs/api/content-delivery/v2",
+    "docs": "https://www.storyblok.com/docs/plugins/tool-plugins",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/search-elasticsearch-sync",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Search Elasticsearch Sync",
+  "description": "Push and version content indices in Elasticsearch/OpenSearch for enterprise search stacks.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "elasticsearch",
+    "opensearch",
+    "search",
+    "indexing"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html",
+    "docs": "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

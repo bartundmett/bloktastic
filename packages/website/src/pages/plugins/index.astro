@@ -1,12 +1,47 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PackageCard from '../../components/PackageCard.astro';
-import { extractSlug, getPlugins } from '../../lib/registry';
+import {
+  extractSlug,
+  formatCategoryLabel,
+  getPlugins,
+  PLUGIN_CATEGORY_ORDER,
+  pluginCategoryDescription,
+  type PluginCategory
+} from '../../lib/registry';
 
-const plugins = getPlugins();
+const plugins = getPlugins().sort((a, b) => a.title.localeCompare(b.title));
+
+const grouped = PLUGIN_CATEGORY_ORDER.map((category) => ({
+  category,
+  label: formatCategoryLabel(category),
+  description: pluginCategoryDescription(category),
+  entries: plugins.filter((entry) => entry.category === category)
+}));
+
+const uncategorized = plugins.filter(
+  (entry) => !entry.category || !PLUGIN_CATEGORY_ORDER.includes(entry.category as PluginCategory)
+);
+
+const statusCounts = new Map<string, number>();
+for (const entry of plugins) {
+  const status = entry.status ?? 'stable';
+  statusCounts.set(status, (statusCounts.get(status) ?? 0) + 1);
+}
+const statuses = Array.from(statusCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+const tagCounts = new Map<string, number>();
+for (const entry of plugins) {
+  for (const tag of entry.tags ?? []) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+const filterTags = Array.from(tagCounts.entries())
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 18);
 ---
 
-<BaseLayout title="Plugins" description="Community curated Storyblok plugins and integrations.">
+<BaseLayout title="Plugins" description="Storyblok plugin directory with filter sidebar and category browsing.">
   <section class="container-shell py-12">
     <header class="mb-10 max-w-3xl">
       <p class="mb-3 inline-flex rounded-full bg-paper px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-slate-600">
@@ -14,18 +49,233 @@ const plugins = getPlugins();
       </p>
       <h1 class="font-display text-4xl font-extrabold text-graphite lg:text-5xl">Storyblok Plugins</h1>
       <p class="mt-3 text-lg text-slate-600">
-        Curated field and tool plugins from the community. Each entry includes status and links.
+        Browse by plugin type, status, and tags using a persistent filter sidebar.
       </p>
     </header>
 
     {plugins.length === 0 ? (
       <div class="glass-card p-12 text-center text-slate-500">No plugins have been added yet.</div>
     ) : (
-      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-        {plugins.map((entry) => (
-          <PackageCard entry={entry} href={`/plugins/${extractSlug(entry.path)}`} kind="plugin" />
-        ))}
+      <div class="grid gap-8 lg:grid-cols-[290px_minmax(0,1fr)]">
+        <aside class="lg:sticky lg:top-28 lg:h-fit">
+          <div class="glass-card space-y-6 p-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Results</p>
+              <p id="plugin-results-count" class="mt-1 text-2xl font-black text-graphite">{plugins.length}</p>
+            </div>
+
+            <label class="block">
+              <span class="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Search</span>
+              <input
+                id="plugin-search"
+                type="search"
+                placeholder="Name, title, or tag"
+                class="w-full rounded-xl border border-borderline bg-white px-3 py-2 text-sm text-graphite outline-none ring-intelligence/30 transition focus:ring"
+              />
+            </label>
+
+            <section>
+              <h2 class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Plugin Type</h2>
+              <div class="space-y-2 text-sm">
+                {grouped.map((group) => (
+                  <label class="flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 text-slate-700">
+                      <input
+                        type="checkbox"
+                        name="plugin-category-filter"
+                        value={group.category}
+                        checked
+                        class="rounded border-borderline"
+                      />
+                      {group.label}
+                    </span>
+                    <span class="rounded bg-paper px-2 py-0.5 text-xs font-bold text-slate-600">{group.entries.length}</span>
+                  </label>
+                ))}
+                {uncategorized.length > 0 && (
+                  <label class="flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 text-slate-700">
+                      <input
+                        type="checkbox"
+                        name="plugin-category-filter"
+                        value="uncategorized"
+                        checked
+                        class="rounded border-borderline"
+                      />
+                      Uncategorized
+                    </span>
+                    <span class="rounded bg-paper px-2 py-0.5 text-xs font-bold text-slate-600">{uncategorized.length}</span>
+                  </label>
+                )}
+              </div>
+            </section>
+
+            <section>
+              <h2 class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Status</h2>
+              <div class="space-y-2 text-sm">
+                {statuses.map(([status, count]) => (
+                  <label class="flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 text-slate-700">
+                      <input type="checkbox" name="plugin-status-filter" value={status} class="rounded border-borderline" />
+                      {status}
+                    </span>
+                    <span class="rounded bg-paper px-2 py-0.5 text-xs font-bold text-slate-600">{count}</span>
+                  </label>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <h2 class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Popular Tags</h2>
+              <div class="max-h-52 space-y-2 overflow-auto pr-1 text-sm">
+                {filterTags.map(([tag, count]) => (
+                  <label class="flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 text-slate-700">
+                      <input type="checkbox" name="plugin-tag-filter" value={tag} class="rounded border-borderline" />
+                      #{tag}
+                    </span>
+                    <span class="rounded bg-paper px-2 py-0.5 text-xs font-bold text-slate-600">{count}</span>
+                  </label>
+                ))}
+              </div>
+            </section>
+
+            <button id="plugin-reset" type="button" class="btn-secondary w-full">Reset Filters</button>
+          </div>
+        </aside>
+
+        <div>
+          <div id="plugin-sections" class="space-y-12">
+            {grouped.map((group) => (
+              <section id={`plugin-${group.category}`} class="plugin-section" data-category={group.category}>
+                <header class="mb-5 flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <h2 class="font-display text-3xl font-bold text-graphite">{group.label}s</h2>
+                    <p class="mt-1 text-sm text-slate-600">{group.description}</p>
+                  </div>
+                  <p class="rounded-full bg-paper px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                    <span class="section-count">{group.entries.length}</span> plugins
+                  </p>
+                </header>
+
+                <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  {group.entries.map((entry) => (
+                    <div
+                      class="plugin-item"
+                      data-category={entry.category ?? 'uncategorized'}
+                      data-status={(entry.status ?? 'stable').toLowerCase()}
+                      data-name={entry.name.toLowerCase()}
+                      data-title={entry.title.toLowerCase()}
+                      data-tags={(entry.tags ?? []).join('|').toLowerCase()}
+                    >
+                      <PackageCard entry={entry} href={`/plugins/${extractSlug(entry.path)}`} kind="plugin" />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            {uncategorized.length > 0 && (
+              <section id="plugin-uncategorized" class="plugin-section" data-category="uncategorized">
+                <header class="mb-5">
+                  <h2 class="font-display text-3xl font-bold text-graphite">Uncategorized</h2>
+                  <p class="mt-1 text-sm text-slate-600">Packages that need a valid plugin type category.</p>
+                </header>
+                <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  {uncategorized.map((entry) => (
+                    <div
+                      class="plugin-item"
+                      data-category="uncategorized"
+                      data-status={(entry.status ?? 'stable').toLowerCase()}
+                      data-name={entry.name.toLowerCase()}
+                      data-title={entry.title.toLowerCase()}
+                      data-tags={(entry.tags ?? []).join('|').toLowerCase()}
+                    >
+                      <PackageCard entry={entry} href={`/plugins/${extractSlug(entry.path)}`} kind="plugin" />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+
+          <div id="plugin-empty-state" class="hidden glass-card py-14 text-center text-slate-500">
+            No plugins match your filters.
+          </div>
+        </div>
       </div>
     )}
   </section>
+
+  <script>
+    const searchInput = document.getElementById('plugin-search');
+    const resetButton = document.getElementById('plugin-reset');
+    const resultCount = document.getElementById('plugin-results-count');
+    const emptyState = document.getElementById('plugin-empty-state');
+    const sections = Array.from(document.querySelectorAll('.plugin-section'));
+    const items = Array.from(document.querySelectorAll('.plugin-item'));
+    const categoryInputs = Array.from(document.querySelectorAll('input[name="plugin-category-filter"]'));
+    const statusInputs = Array.from(document.querySelectorAll('input[name="plugin-status-filter"]'));
+    const tagInputs = Array.from(document.querySelectorAll('input[name="plugin-tag-filter"]'));
+
+    const selectedValues = (inputs: Element[]) =>
+      new Set(
+        inputs
+          .filter((input: Element): input is HTMLInputElement => input instanceof HTMLInputElement && input.checked)
+          .map((input: HTMLInputElement) => input.value)
+      );
+
+    const applyFilters = () => {
+      const query = searchInput instanceof HTMLInputElement ? searchInput.value.toLowerCase().trim() : '';
+      const selectedCategories = selectedValues(categoryInputs);
+      const selectedStatuses = selectedValues(statusInputs);
+      const selectedTags = selectedValues(tagInputs);
+
+      items.forEach((item) => {
+        const category = item.getAttribute('data-category') || '';
+        const status = item.getAttribute('data-status') || '';
+        const name = item.getAttribute('data-name') || '';
+        const title = item.getAttribute('data-title') || '';
+        const tags = (item.getAttribute('data-tags') || '').split('|').filter(Boolean);
+
+        const categoryMatches = selectedCategories.size === 0 || selectedCategories.has(category);
+        const statusMatches = selectedStatuses.size === 0 || selectedStatuses.has(status);
+        const tagMatches = selectedTags.size === 0 || tags.some((tag) => selectedTags.has(tag));
+        const queryMatches = !query || name.includes(query) || title.includes(query) || tags.some((tag) => tag.includes(query));
+
+        item.classList.toggle('hidden', !(categoryMatches && statusMatches && tagMatches && queryMatches));
+      });
+
+      let visibleTotal = 0;
+      sections.forEach((section) => {
+        const visibleInSection = section.querySelectorAll('.plugin-item:not(.hidden)').length;
+        const badge = section.querySelector('.section-count');
+        if (badge) badge.textContent = String(visibleInSection);
+        section.classList.toggle('hidden', visibleInSection === 0);
+        visibleTotal += visibleInSection;
+      });
+
+      if (resultCount) resultCount.textContent = String(visibleTotal);
+      if (emptyState) emptyState.classList.toggle('hidden', visibleTotal > 0);
+    };
+
+    searchInput?.addEventListener('input', applyFilters);
+    categoryInputs.forEach((input) => input.addEventListener('change', applyFilters));
+    statusInputs.forEach((input) => input.addEventListener('change', applyFilters));
+    tagInputs.forEach((input) => input.addEventListener('change', applyFilters));
+
+    resetButton?.addEventListener('click', () => {
+      if (searchInput instanceof HTMLInputElement) searchInput.value = '';
+      categoryInputs.forEach((input) => {
+        if (input instanceof HTMLInputElement) input.checked = true;
+      });
+      statusInputs.forEach((input) => {
+        if (input instanceof HTMLInputElement) input.checked = false;
+      });
+      tagInputs.forEach((input) => {
+        if (input instanceof HTMLInputElement) input.checked = false;
+      });
+      applyFilters();
+    });
+  </script>
 </BaseLayout>

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/advanced-color-picker",
   "type": "plugin",
   "version": "1.0.0",
@@ -11,16 +11,24 @@
   },
   "compatibility": {
     "storyblok": ">=2.0.0",
-    "frameworks": ["agnostic"]
+    "frameworks": [
+      "agnostic"
+    ]
   },
-  "tags": ["plugin", "field", "color", "design-tokens"],
+  "tags": [
+    "plugin",
+    "field",
+    "color",
+    "design-tokens"
+  ],
   "category": "field-plugins",
   "files": {
     "readme": "README.md"
   },
   "links": {
     "website": "https://github.com/bloktastic/advanced-color-picker",
-    "npm": "https://www.npmjs.com/package/storyblok-advanced-color-picker"
+    "docs": "https://www.storyblok.com/docs/plugins/field-plugins",
+    "storyblok": "https://www.storyblok.com/docs/plugins/field-plugins"
   },
   "metadata": {
     "created": "2026-02-07",

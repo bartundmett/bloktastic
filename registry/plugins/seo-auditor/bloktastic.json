@@ -1,5 +1,5 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/seo-auditor",
   "type": "plugin",
   "version": "0.9.0",
@@ -11,16 +11,24 @@
   },
   "compatibility": {
     "storyblok": ">=2.0.0",
-    "frameworks": ["agnostic"]
+    "frameworks": [
+      "agnostic"
+    ]
   },
-  "tags": ["plugin", "sidebar", "seo", "analysis"],
-  "category": "sidebar-plugins",
+  "tags": [
+    "plugin",
+    "space-plugin",
+    "seo",
+    "analysis"
+  ],
+  "category": "space-plugins",
   "files": {
     "readme": "README.md"
   },
   "links": {
     "website": "https://github.com/bloktastic/seo-auditor",
-    "docs": "https://github.com/bloktastic/seo-auditor#readme"
+    "docs": "https://github.com/bloktastic/seo-auditor#readme",
+    "storyblok": "https://www.storyblok.com/docs/plugins/space-plugins"
   },
   "metadata": {
     "created": "2026-02-07",

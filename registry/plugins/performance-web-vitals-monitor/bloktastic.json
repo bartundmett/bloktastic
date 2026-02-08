@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/performance-web-vitals-monitor",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Performance Web Vitals Monitor",
+  "description": "Track content-related performance regressions and Core Web Vitals by page template.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "performance",
+    "web-vitals",
+    "monitoring",
+    "quality"
+  ],
+  "category": "space-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://web.dev/vitals/",
+    "docs": "https://www.storyblok.com/docs/plugins/space-plugins",
+    "storyblok": "https://www.storyblok.com/docs/plugins/space-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

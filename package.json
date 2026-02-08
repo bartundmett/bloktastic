@@ -6,8 +6,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "dev": "pnpm --filter website dev",
-    "dev:cli": "pnpm --filter @bloktastic/cli dev",
-    "build:cli": "pnpm --filter @bloktastic/cli build",
+    "dev:cli": "pnpm --filter ./packages/cli dev",
+    "build:cli": "pnpm --filter ./packages/cli build",
     "bloktastic": "node packages/cli/dist/index.js",
     "lint": "pnpm -r lint",
     "check": "pnpm -r check",

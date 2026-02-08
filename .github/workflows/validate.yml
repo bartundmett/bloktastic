@@ -1,0 +1,126 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Enforce registry version bumps
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/check-registry-version-bumps.mjs "$BASE_SHA" "$HEAD_SHA"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck workspace
+        run: pnpm -r check
+
+      - name: Run CLI unit tests
+        run: pnpm --filter ./packages/cli test
+
+      - name: Build workspace
+        run: pnpm -r build
+
+  registry:
+    name: Registry Integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build CLI for package validation
+        run: pnpm --filter ./packages/cli build
+
+      - name: Check for duplicate package names
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const roots = ['registry/components', 'registry/plugins', 'registry/presets'];
+          const seen = new Map();
+          let hasDuplicates = false;
+
+          for (const root of roots) {
+            for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+              if (!entry.isDirectory()) continue;
+              const manifestPath = path.join(root, entry.name, 'bloktastic.json');
+              const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+              const previousPath = seen.get(manifest.name);
+
+              if (previousPath) {
+                hasDuplicates = true;
+                console.error(`Duplicate package name: ${manifest.name}`);
+                console.error(`  - ${previousPath}`);
+                console.error(`  - ${manifestPath}`);
+                continue;
+              }
+
+              seen.set(manifest.name, manifestPath);
+            }
+          }
+
+          if (hasDuplicates) process.exit(1);
+          console.log(`Checked ${seen.size} package names: no duplicates found.`);
+          NODE
+
+      - name: Validate all registry packages
+        run: |
+          set -euo pipefail
+          while IFS= read -r pkg; do
+            echo "Validating ${pkg}"
+            node packages/cli/dist/index.js validate "${pkg}" --quiet >/dev/null
+          done < <(find registry/components registry/plugins registry/presets -mindepth 1 -maxdepth 1 -type d | sort)
+
+      - name: Verify registry build command
+        run: pnpm registry:build

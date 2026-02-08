@@ -1,5 +1,5 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/cookie-consent-manager",
   "type": "plugin",
   "version": "1.0.0",
@@ -27,7 +27,8 @@
   },
   "links": {
     "website": "https://github.com/bloktastic/cookie-consent-manager",
-    "docs": "https://github.com/bloktastic/cookie-consent-manager#readme"
+    "docs": "https://github.com/bloktastic/cookie-consent-manager#readme",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
   },
   "metadata": {
     "created": "2026-02-07",

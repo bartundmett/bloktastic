@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/ab-testing-manager",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "A/B Testing Manager",
+  "description": "Run A/B and multivariate content experiments with variant targeting and conversion tracking.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "ab-testing",
+    "experiments",
+    "conversion",
+    "optimization"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.storyblok.com/docs/plugins/tool-plugins",
+    "docs": "https://www.storyblok.com/docs/concepts/personalization",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

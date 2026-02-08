@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/content-approval-jira",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Content Approval JIRA",
+  "description": "Require JIRA issue linkage and approval state before publishing regulated or high-risk content.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "jira",
+    "approval",
+    "workflow",
+    "governance"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/",
+    "docs": "https://support.atlassian.com/jira-software-cloud/docs/what-is-jira-software/",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

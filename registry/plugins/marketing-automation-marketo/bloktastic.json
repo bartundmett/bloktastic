@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/marketing-automation-marketo",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Marketing Automation Marketo",
+  "description": "Trigger Marketo programs and lead flows from Storyblok publish and form events.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "marketo",
+    "marketing-automation",
+    "lead-nurture",
+    "campaigns"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api",
+    "docs": "https://experienceleague.adobe.com/en/docs/marketo/using/home",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

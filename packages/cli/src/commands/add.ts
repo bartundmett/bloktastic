@@ -11,7 +11,7 @@ import {
   fetchPackageSchema,
   findPackage
 } from '../lib/registry.js';
-import { componentExists, pushComponent } from '../lib/storyblok.js';
+import { pushComponent } from '../lib/storyblok.js';
 import type { PackageManifest, PromptOutput, Region } from '../types/index.js';
 import { error, info, parsePackageName, spinner, success, warning } from '../lib/utils.js';
 
@@ -28,6 +28,10 @@ interface InstallOptions {
   spaceId?: string;
   region?: Region;
   promptOutput: PromptOutput;
+}
+
+function shouldTrackInstall(installOptions: InstallOptions): boolean {
+  return !installOptions.promptOnly;
 }
 
 async function maybeCopyPrompt(promptText: string): Promise<void> {
@@ -127,16 +131,22 @@ async function installComponent(
     warning('Could not fetch prompt for this package.');
   }
 
-  await addInstalledPackage({
-    name: manifest.name,
-    version: manifest.version,
-    installedAt: new Date().toISOString()
-  });
+  if (shouldTrackInstall(installOptions)) {
+    await addInstalledPackage({
+      name: manifest.name,
+      version: manifest.version,
+      installedAt: new Date().toISOString()
+    });
+  }
 
   return true;
 }
 
-async function installPlugin(manifest: PackageManifest, packagePath: string): Promise<boolean> {
+async function installPlugin(
+  manifest: PackageManifest,
+  packagePath: string,
+  installOptions: InstallOptions
+): Promise<boolean> {
   console.log(`Installing plugin listing ${chalk.cyan(manifest.name)}...`);
 
   try {
@@ -156,11 +166,13 @@ async function installPlugin(manifest: PackageManifest, packagePath: string): Pr
     warning('Could not load plugin README.');
   }
 
-  await addInstalledPackage({
-    name: manifest.name,
-    version: manifest.version,
-    installedAt: new Date().toISOString()
-  });
+  if (shouldTrackInstall(installOptions)) {
+    await addInstalledPackage({
+      name: manifest.name,
+      version: manifest.version,
+      installedAt: new Date().toISOString()
+    });
+  }
 
   return true;
 }
@@ -185,11 +197,13 @@ async function installPreset(
     }
   }
 
-  await addInstalledPackage({
-    name: manifest.name,
-    version: manifest.version,
-    installedAt: new Date().toISOString()
-  });
+  if (shouldTrackInstall(installOptions)) {
+    await addInstalledPackage({
+      name: manifest.name,
+      version: manifest.version,
+      installedAt: new Date().toISOString()
+    });
+  }
 
   return true;
 }
@@ -222,10 +236,8 @@ async function installPackage(
 
   spin.succeed(`Found ${packageName} v${manifest.version}`);
 
-  const checkStoryblok = Boolean(installOptions.spaceId && !installOptions.promptOnly && !installOptions.skipSchema);
-
   if (manifest.dependencies?.bloktastic?.length) {
-    console.log('\nChecking dependencies:');
+    console.log('\nResolving dependencies:');
 
     for (const dependency of manifest.dependencies.bloktastic) {
       if (installedInSession.has(dependency)) {
@@ -233,23 +245,12 @@ async function installPackage(
         continue;
       }
 
-      if (checkStoryblok && installOptions.spaceId) {
-        const parsed = parsePackageName(dependency);
-        if (parsed) {
-          try {
-            const exists = await componentExists(installOptions.spaceId, parsed.packageName, installOptions.region);
-            if (exists) {
-              warning(`${dependency} (already exists in Space)`);
-              console.log(chalk.dim('    → Skipping installation (existing component preserved)'));
-              continue;
-            }
-          } catch {
-            warning(`Could not check if ${dependency} exists in Storyblok; attempting install.`);
-          }
-        }
+      if (installOptions.force && installOptions.spaceId && !installOptions.promptOnly && !installOptions.skipSchema) {
+        info(`${dependency} (will install/update due to --force)`);
+      } else {
+        info(`${dependency} (will resolve/install)`);
       }
 
-      info(`${dependency} (will install)`);
       const ok = await installPackage(dependency, installOptions, installedInSession);
       if (!ok) {
         error(`Failed to install dependency: ${dependency}`);
@@ -267,7 +268,7 @@ async function installPackage(
   }
 
   if (manifest.type === 'plugin') {
-    return installPlugin(manifest, packageEntry.path);
+    return installPlugin(manifest, packageEntry.path, installOptions);
   }
 
   if (manifest.type === 'preset') {

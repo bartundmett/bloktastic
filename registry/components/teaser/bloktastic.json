@@ -1,5 +1,5 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/teaser",
   "type": "component",
   "version": "1.0.0",

@@ -2,25 +2,107 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PackageCard from '../components/PackageCard.astro';
 import CodeBlock from '../components/CodeBlock.astro';
-import { extractSlug, getComponents, getPlugins, getStats } from '../lib/registry';
+import { extractSlug, getComponents, getPresets, getStats } from '../lib/registry';
 
-const featuredComponents = getComponents().slice(0, 6);
-const featuredPlugins = getPlugins().slice(0, 2);
+const searchableComponents = getComponents().sort((a, b) => a.title.localeCompare(b.title));
+const featuredPresets = getPresets().slice(0, 3);
 const stats = getStats();
+const homepageSearchLimit = 6;
 
-const installSnippet = `# install CLI\nnpm install -g @bloktastic/cli\n\n# initialize your project\nbloktastic init\n\n# add a hero component\nbloktastic add @bloktastic/hero\n\n# generate code prompt only\nbloktastic add @bloktastic/hero --prompt-only`;
+const installSnippet = `# install CLI\nnpm install -g bloktastic\n\n# initialize your project\nbloktastic init\n\n# add a hero component\nbloktastic add @bloktastic/hero\n\n# generate code prompt only\nbloktastic add @bloktastic/hero --prompt-only`;
+const schemaSnippet = `{
+  "$bloktastic": { "version": "1.0.0" },
+  "name": "hero",
+  "display_name": "Hero Section",
+  "is_nestable": true,
+  "schema": {
+    "headline": { "type": "text", "required": true, "pos": 0 },
+    "subline": { "type": "textarea", "pos": 1 },
+    "cta_buttons": {
+      "type": "bloks",
+      "restrict_components": true,
+      "component_whitelist": ["button"],
+      "maximum": 2,
+      "pos": 2
+    }
+  },
+  "preview_field": "headline"
+}`;
+const promptSnippet = `## Purpose
+Build a production-ready Hero component for our frontend stack.
 
-const promises = [
-  'Storyblok-native schemas',
-  'Prompt-first frontend generation',
-  'Community-reviewed package metadata',
-  'CLI install flow with dependency support'
+## Storyblok Schema Fields
+- headline (required)
+- subline (optional)
+- cta_buttons (0-2)
+
+## Visual Requirements
+- Responsive layout
+- Strong contrast
+- Graceful empty states
+
+## Accessibility
+- Semantic heading usage
+- Keyboard focus styles
+- CTA labels are descriptive`;
+const contributeSnippet = `# scaffold a new package
+bloktastic create component my-component --namespace your-github
+
+# or scaffold a plugin
+bloktastic create plugin my-plugin --namespace your-github
+
+# validate before opening a PR
+bloktastic validate registry/components/my-component`;
+const contributionFlow = [
+  {
+    step: '1',
+    title: 'Create your package',
+    body: 'Start with a component or plugin scaffold, then fill manifest, schema, prompt, and README files.'
+  },
+  {
+    step: '2',
+    title: 'Complete details',
+    body: 'Add clear metadata, tags, and usage context so others can discover and install your package quickly.'
+  },
+  {
+    step: '3',
+    title: 'Validate and submit',
+    body: 'Run local validation, then open a pull request with examples, screenshots, or generated output.'
+  },
+  {
+    step: '4',
+    title: 'Review and publish',
+    body: 'After review passes, your package lands in the registry and becomes installable by the community.'
+  }
+];
+
+const heroHighlights = [
+  {
+    text: 'Launch new Storyblok projects in minutes',
+    iconPath:
+      'M11.089 3.747a.75.75 0 011.332.633l-1.763 3.711h2.59a.75.75 0 01.581 1.224l-5.5 6.75a.75.75 0 01-1.31-.694l1.363-4.122H5.749a.75.75 0 01-.656-1.114l5.996-10.388z'
+  },
+  {
+    text: 'Push editor-ready schemas without setup drag',
+    iconPath:
+      'M3.75 3.75a.75.75 0 01.75.75V6h11.25V4.5a.75.75 0 011.5 0v7.879a3.75 3.75 0 01-3.75 3.75H6.5a3.75 3.75 0 01-3.75-3.75V4.5a.75.75 0 01.75-.75zm.75 3.75v4.879a2.25 2.25 0 002.25 2.25h7a2.25 2.25 0 002.25-2.25V7.5H4.5z'
+  },
+  {
+    text: 'Generate frontend code for any stack',
+    iconPath:
+      'M8.22 3.22a.75.75 0 011.06 0l4.5 4.5a.75.75 0 11-1.06 1.06L8.75 4.81l-3.97 3.97a.75.75 0 01-1.06-1.06l4.5-4.5zm4.5 9a.75.75 0 011.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.97 3.97 3.97-3.97z'
+  },
+  {
+    text: 'Built for agencies, freelancers, and in-house teams',
+    iconPath:
+      'M16.5 7.5a3 3 0 10-2.964-3.5H10.5a3 3 0 100 1.5h3.036A3.001 3.001 0 0016.5 7.5zM6 15a3 3 0 10-2.964-3.5H1.5a.75.75 0 000 1.5h1.536A3.001 3.001 0 006 15zm10.5 3a3 3 0 10-2.964-3.5H10.5a3 3 0 100 1.5h3.036A3.001 3.001 0 0016.5 18z'
+  }
 ];
 ---
 
 <BaseLayout
-  title="Build with Joy"
-  description="Bloktastic helps teams ship Storyblok components faster with validated schemas and AI-ready prompts."
+  title="Storyblok Packages for Teams That Ship"
+  description="Bloktastic helps developers, marketers, agencies, and freelancers ship Storyblok components faster with validated schemas and AI-ready prompts."
 >
   <section class="container-shell relative overflow-hidden py-16 lg:py-24">
     <div class="starfield absolute inset-0"></div>
@@ -28,32 +110,34 @@ const promises = [
     <div class="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
       <div class="relative z-10 animate-fadeUp">
         <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-slate-600">
-          Community Registry for Storyblok
+          Hey Blok Lovers
         </p>
 
         <h1 class="text-balance font-display text-5xl font-extrabold leading-[1.05] text-graphite lg:text-7xl">
-          Build with <span class="text-joy">Joy.</span>
+          Build with <span class="text-joy">joy.</span>
           <br />
-          Ship with <span class="text-intelligence">Confidence.</span>
+          Ship at <span class="text-intelligence">lightspeed.</span>
         </h1>
 
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 lg:text-xl">
-          Install polished bloks in minutes, copy a framework-agnostic prompt, and generate implementation
-          code that fits your exact stack.
+          The fastest way to launch new Storyblok projects for developers, marketers, agencies, freelancers, and solo
+          builders: install production-ready packages, sync schemas, and generate frontend code for any stack.
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a href="/docs/getting-started" class="btn-primary">Start Building</a>
-          <a href="/components" class="btn-secondary">Browse Bloks</a>
+          <a href="/docs/getting-started" class="btn-primary">Start Building with Joy</a>
+          <a href="/components" class="btn-secondary">Browse Storyblok Packages</a>
         </div>
 
         <div class="mt-10 grid gap-3 sm:grid-cols-2">
-          {promises.map((item, index) => (
-            <div
-              class={`glass-card animate-fadeUp px-4 py-3 text-sm font-semibold text-slate-700`}
-              style={`animation-delay:${index * 120}ms`}
-            >
-              ✦ {item}
+          {heroHighlights.map((item, index) => (
+            <div class="animate-fadeUp flex items-start gap-3" style={`animation-delay:${index * 120}ms`}>
+              <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/80 bg-white/90 text-intelligence shadow-card">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                  <path d={item.iconPath}></path>
+                </svg>
+              </span>
+              <p class="pt-0.5 text-sm font-semibold leading-relaxed text-slate-700">{item.text}</p>
             </div>
           ))}
         </div>
@@ -94,10 +178,10 @@ const promises = [
   <section class="container-shell py-12">
     <div class="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
       <div>
-        <h2 class="font-display text-3xl font-extrabold text-graphite lg:text-4xl">Fast install workflow</h2>
+        <h2 class="font-display text-3xl font-extrabold text-graphite lg:text-4xl">Fast workflow for every team type</h2>
         <p class="mt-3 max-w-2xl text-slate-600">
-          Bloktastic keeps the install process simple: pull from registry, push to Storyblok, then use your AI tool
-          for framework-specific code generation.
+          Pull from the registry, sync to Storyblok, and generate stack-specific code. The same process works for
+          in-house teams, agencies with many clients, and solo freelancers shipping quickly.
         </p>
 
         <div class="mt-6">
@@ -110,15 +194,15 @@ const promises = [
         <ol class="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
           <li class="rounded-2xl bg-paper p-4">
             <strong class="block text-graphite">1. Select a package</strong>
-            Choose from community bloks and vetted plugins.
+            Pick components, presets, and plugins that match your Storyblok use case.
           </li>
           <li class="rounded-2xl bg-paper p-4">
             <strong class="block text-graphite">2. Install via CLI</strong>
-            Push schema to Storyblok and resolve dependencies automatically.
+            Push schema to Storyblok and resolve dependencies automatically for clean editor setup.
           </li>
           <li class="rounded-2xl bg-paper p-4">
             <strong class="block text-graphite">3. Generate frontend code</strong>
-            Use the included prompt to produce code for Vue, React, Astro, or any stack.
+            Use the included prompt to generate production-ready code for Vue, React, Astro, or any stack.
           </li>
         </ol>
       </div>
@@ -126,34 +210,182 @@ const promises = [
   </section>
 
   <section class="container-shell py-12">
-    <div class="mb-6 flex items-end justify-between gap-4">
-      <div>
-        <h2 class="font-display text-3xl font-extrabold text-graphite">Featured bloks</h2>
-        <p class="mt-2 text-slate-600">Starter building blocks for your first production setup.</p>
-      </div>
-      <a href="/components" class="btn-secondary">See all bloks</a>
+    <div class="mb-6 max-w-3xl">
+      <h2 class="font-display text-3xl font-extrabold text-graphite lg:text-4xl">How Bloktastic works</h2>
+      <p class="mt-3 text-slate-600">
+        Bloktastic is a prompt-first system: define a solid Storyblok schema as your content contract, then pair it
+        with a structured implementation prompt. This gives marketers predictable fields and gives developers
+        stack-specific output without template lock-in.
+      </p>
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-      {featuredComponents.map((entry) => (
-        <PackageCard entry={entry} href={`/components/${extractSlug(entry.path)}`} kind="component" />
-      ))}
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div class="space-y-4">
+        <div class="glass-card p-5">
+          <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">1. Schema Contract</p>
+          <p class="mt-2 text-sm text-slate-600">
+            Uses the Storyblok schema definitions you already know and love, as one reliable source of truth for field
+            setup across your projects.
+          </p>
+        </div>
+        <CodeBlock code={schemaSnippet} language="json" title="schema.json (excerpt)" />
+      </div>
+
+      <div class="space-y-4">
+        <div class="glass-card p-5">
+          <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">2. Prompt Contract</p>
+          <p class="mt-2 text-sm text-slate-600">
+            Encodes intent, a11y, and edge cases so AI can generate code that matches your exact stack and team style.
+          </p>
+        </div>
+        <CodeBlock code={promptSnippet} language="md" title="prompt.md (excerpt)" />
+      </div>
     </div>
   </section>
 
   <section class="container-shell py-12">
     <div class="mb-6 flex items-end justify-between gap-4">
       <div>
-        <h2 class="font-display text-3xl font-extrabold text-graphite">Sample plugins</h2>
-        <p class="mt-2 text-slate-600">Curated external tools to extend the editor experience.</p>
+        <h2 class="font-display text-3xl font-extrabold text-graphite">Find the right blok</h2>
+        <p class="mt-2 text-slate-600">Search by name, title, or tag without leaving the homepage.</p>
       </div>
-      <a href="/plugins" class="btn-secondary">Browse plugins</a>
+      <a href="/components" class="btn-secondary">Open full directory</a>
     </div>
 
-    <div class="grid gap-5 md:grid-cols-2">
-      {featuredPlugins.map((entry) => (
-        <PackageCard entry={entry} href={`/plugins/${extractSlug(entry.path)}`} kind="plugin" />
+    <div class="glass-card p-5 lg:p-6">
+      <label class="block">
+        <span class="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Search Bloks</span>
+        <input
+          id="home-blok-search"
+          type="search"
+          placeholder="Try hero, pricing, testimonial, faq..."
+          class="w-full rounded-xl border border-borderline bg-white px-3 py-2 text-sm text-graphite outline-none ring-intelligence/30 transition focus:ring"
+        />
+      </label>
+      <p id="home-blok-count" data-search-limit={homepageSearchLimit} class="mt-3 text-sm text-slate-600">
+        Showing {Math.min(homepageSearchLimit, searchableComponents.length)} of {searchableComponents.length} bloks
+      </p>
+    </div>
+
+    <div id="home-blok-results" class="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {searchableComponents.map((entry, index) => (
+        <div
+          class={`home-blok-item ${index >= homepageSearchLimit ? 'hidden' : ''}`}
+          data-name={entry.name.toLowerCase()}
+          data-title={entry.title.toLowerCase()}
+          data-tags={(entry.tags ?? []).join('|').toLowerCase()}
+        >
+          <PackageCard entry={entry} href={`/components/${extractSlug(entry.path)}`} kind="component" />
+        </div>
+      ))}
+    </div>
+
+    <div id="home-blok-empty" class="hidden mt-6 rounded-2xl border border-borderline bg-white/80 py-8 text-center text-sm text-slate-500">
+      No bloks matched your search.
+    </div>
+  </section>
+
+  <section class="container-shell py-12">
+    <div class="mb-6 flex items-end justify-between gap-4">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold text-graphite">Starter presets</h2>
+        <p class="mt-2 text-slate-600">Curated bundles for agency delivery, freelancer speed, and consistent team onboarding.</p>
+      </div>
+      <a href="/presets" class="btn-secondary">Browse presets</a>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {featuredPresets.map((entry) => (
+        <PackageCard entry={entry} href={`/presets/${extractSlug(entry.path)}`} kind="preset" />
       ))}
     </div>
   </section>
+
+  <section class="container-shell py-12">
+    <div class="glass-card p-6 lg:p-8">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <p class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Contribute to Bloktastic</p>
+          <h2 class="font-display text-3xl font-extrabold text-graphite lg:text-4xl">Submit your own bloks and plugins</h2>
+          <p class="mt-3 text-slate-600">
+            We use a clear submission flow inspired by mature ecosystems: package setup, complete details, validation,
+            review, and publish. Start with one package and grow your contributor footprint over time.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="/docs/contributing" class="btn-primary">Contribution Guide</a>
+          <a href="https://github.com/bloktastic/bloktastic" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            Open GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {contributionFlow.map((item) => (
+          <article class="rounded-2xl bg-paper p-4">
+            <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Step {item.step}</p>
+            <h3 class="mt-1 text-sm font-extrabold text-graphite">{item.title}</h3>
+            <p class="mt-1 text-sm leading-relaxed text-slate-600">{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-6 rounded-2xl border border-slate-800/60 bg-slate-950 p-4 text-slate-100">
+        <p class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-400">Contributor Quickstart</p>
+        <pre class="overflow-x-auto text-xs leading-relaxed text-slate-200"><code>{contributeSnippet}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-shell py-12">
+    <div class="glass-card flex flex-col items-start justify-between gap-4 p-6 lg:flex-row lg:items-center lg:p-8">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold text-graphite">Need plugins too?</h2>
+        <p class="mt-2 max-w-2xl text-slate-600">
+          Explore the plugin directory when you want integrations, automation, and editor extensions for your Storyblok setup.
+        </p>
+      </div>
+      <a href="/plugins" class="btn-secondary">Browse plugins</a>
+    </div>
+  </section>
+
+  <script>
+    const homeSearchInput = document.getElementById('home-blok-search');
+    const homeResultCount = document.getElementById('home-blok-count');
+    const homeEmptyState = document.getElementById('home-blok-empty');
+    const homeBlokItems = Array.from(document.querySelectorAll('.home-blok-item'));
+    const homeSearchLimit = Number.parseInt(homeResultCount?.getAttribute('data-search-limit') ?? '6', 10);
+    const homeTotalBloks = homeBlokItems.length;
+
+    const formatHomeCount = (matches: number, query: string) => {
+      if (!query) return `Showing ${Math.min(homeSearchLimit, homeTotalBloks)} of ${homeTotalBloks} bloks`;
+      if (matches === 0) return '0 matches';
+      if (matches <= homeSearchLimit) return `${matches} ${matches === 1 ? 'match' : 'matches'}`;
+      return `${matches} matches (showing first ${homeSearchLimit})`;
+    };
+
+    const applyHomeBlokSearch = () => {
+      const query = homeSearchInput instanceof HTMLInputElement ? homeSearchInput.value.toLowerCase().trim() : '';
+      let matches = 0;
+      let shown = 0;
+
+      homeBlokItems.forEach((item, index) => {
+        const name = item.getAttribute('data-name') || '';
+        const title = item.getAttribute('data-title') || '';
+        const tags = (item.getAttribute('data-tags') || '').split('|').filter(Boolean);
+        const isMatch = !query || name.includes(query) || title.includes(query) || tags.some((tag) => tag.includes(query));
+        if (isMatch) matches += 1;
+
+        const shouldShow = query ? isMatch && shown < homeSearchLimit : index < homeSearchLimit;
+        if (shouldShow) shown += 1;
+        item.classList.toggle('hidden', !shouldShow);
+      });
+
+      if (homeResultCount) homeResultCount.textContent = formatHomeCount(matches, query);
+      if (homeEmptyState) homeEmptyState.classList.toggle('hidden', matches > 0 || !query);
+    };
+
+    homeSearchInput?.addEventListener('input', applyHomeBlokSearch);
+    applyHomeBlokSearch();
+  </script>
 </BaseLayout>

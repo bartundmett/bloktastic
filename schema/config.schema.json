@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://bloktastic.dev/schema/config.schema.json",
+  "$id": "https://bloktastic.com/schema/config.schema.json",
   "title": "Bloktastic Project Config",
   "type": "object",
   "properties": {

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/marketing-automation-eloqua",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Marketing Automation Eloqua",
+  "description": "Connect Eloqua contacts and campaign workflows to Storyblok content lifecycle events.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "eloqua",
+    "marketing-automation",
+    "lead-nurture",
+    "enterprise"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://docs.oracle.com/en/cloud/saas/marketing/eloqua-develop/Help/Developers/EloquaAsynchronousAPI/Reference/reference.htm",
+    "docs": "https://docs.oracle.com/en/cloud/saas/marketing/eloqua-user/",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

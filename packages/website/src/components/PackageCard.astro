@@ -1,5 +1,6 @@
 ---
 import type { PackageEntry } from '../lib/registry';
+import { formatCategoryLabel } from '../lib/registry';
 
 interface Props {
   entry: PackageEntry;
@@ -8,33 +9,71 @@ interface Props {
 }
 
 const { entry, href, kind } = Astro.props;
-const category = entry.category ?? (kind === 'plugin' ? 'plugin' : 'uncategorized');
+const fallbackCategory = kind === 'plugin' ? 'plugin' : kind === 'preset' ? 'preset' : 'component';
+const category = formatCategoryLabel(entry.category ?? fallbackCategory);
 const status = entry.status ?? 'stable';
+const statusClass =
+  status === 'deprecated'
+    ? 'bg-red-100 text-red-700'
+    : status === 'maintained'
+      ? 'bg-emerald-100 text-emerald-700'
+      : status === 'archived' || status === 'unmaintained'
+        ? 'bg-amber-100 text-amber-700'
+        : 'bg-slate-100 text-slate-600';
+const fallbackDescription =
+  kind === 'plugin'
+    ? 'Storyblok plugin package for editor workflows and integrations.'
+    : kind === 'preset'
+      ? 'Preset bundle that installs multiple Storyblok packages together.'
+      : 'Reusable Storyblok component with ready-to-install schema and prompt.';
+const description = entry.description?.trim() || fallbackDescription;
+const visibleTags = (entry.tags ?? []).slice(0, 3);
+const hiddenTagCount = Math.max((entry.tags ?? []).length - visibleTags.length, 0);
 ---
 
 <a
   href={href}
-  class="group block rounded-3xl border border-white/70 bg-white/90 p-5 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-intelligence/40 hover:shadow-glow"
+  class="group flex h-full min-w-0 flex-col rounded-3xl border border-white/70 bg-white/90 p-5 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-intelligence/40 hover:shadow-glow"
 >
-  <div class="mb-3 flex items-start justify-between gap-3">
-    <p class="text-sm font-semibold text-slate-500">{entry.name}</p>
-    <span class="rounded-full bg-slate-100 px-2 py-1 font-mono text-[11px] text-slate-600">v{entry.version}</span>
+  <div class="mb-3 flex min-w-0 items-start justify-between gap-3">
+    <p class="min-w-0 truncate font-mono text-xs font-semibold text-slate-500" title={entry.name}>
+      {entry.name}
+    </p>
+    <span
+      class="max-w-[9rem] shrink-0 truncate rounded-full bg-slate-100 px-2 py-1 font-mono text-[11px] text-slate-600"
+      title={`v${entry.version}`}
+    >
+      v{entry.version}
+    </span>
   </div>
 
-  <h3 class="mb-2 text-lg font-bold text-graphite transition-colors group-hover:text-intelligence">{entry.title}</h3>
+  <h3 class="min-w-0 text-lg font-bold leading-snug text-graphite transition-colors group-hover:text-intelligence">
+    {entry.title}
+  </h3>
+  <p
+    class="mt-2 min-w-0 overflow-hidden text-sm leading-relaxed text-slate-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]"
+    title={description}
+  >
+    {description}
+  </p>
 
-  <div class="mb-4 flex flex-wrap gap-2">
-    <span class="badge capitalize">{category}</span>
-    <span class={`rounded-lg px-2.5 py-1 text-xs font-semibold ${status === 'deprecated' ? 'bg-red-100 text-red-700' : status === 'maintained' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`}>
+  <div class="mt-4 flex flex-wrap gap-2">
+    <span class="badge">{category}</span>
+    <span class={`rounded-lg px-2.5 py-1 text-xs font-semibold ${statusClass}`}>
       {status}
     </span>
   </div>
 
-  {entry.tags && entry.tags.length > 0 && (
-    <div class="flex flex-wrap gap-2">
-      {entry.tags.slice(0, 4).map((tag) => (
+  {visibleTags.length > 0 && (
+    <div class="mt-3 flex flex-wrap gap-2">
+      {visibleTags.map((tag) => (
         <span class="rounded-md bg-slate-100/90 px-2 py-1 text-xs font-medium text-slate-600">#{tag}</span>
       ))}
+      {hiddenTagCount > 0 && (
+        <span class="rounded-md bg-slate-100/90 px-2 py-1 text-xs font-medium text-slate-500">
+          +{hiddenTagCount} more
+        </span>
+      )}
     </div>
   )}
 </a>

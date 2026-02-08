@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/feature-flag-targeting",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Feature Flag Targeting",
+  "description": "Toggle and target content features by environment, segment, or rollout percentage.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "feature-flags",
+    "rollout",
+    "targeting",
+    "release"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.storyblok.com/docs/concepts/personalization",
+    "docs": "https://www.storyblok.com/docs/plugins/tool-plugins",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

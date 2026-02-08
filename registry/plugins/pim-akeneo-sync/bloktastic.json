@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/pim-akeneo-sync",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "PIM Akeneo Sync",
+  "description": "Field and sync utilities to pull product attributes and media from Akeneo into entries.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "akeneo",
+    "pim",
+    "product-data",
+    "catalog"
+  ],
+  "category": "field-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://api.akeneo.com/",
+    "docs": "https://help.akeneo.com/",
+    "storyblok": "https://www.storyblok.com/docs/plugins/field-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

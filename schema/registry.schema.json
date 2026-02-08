@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://bloktastic.dev/schema/registry.schema.json",
+  "$id": "https://bloktastic.com/schema/registry.schema.json",
   "title": "Bloktastic Registry",
   "description": "Schema for registry.json",
   "type": "object",
@@ -86,6 +86,9 @@
           "pattern": "^\\d+\\.\\d+\\.\\d+$"
         },
         "title": {
+          "type": "string"
+        },
+        "description": {
           "type": "string"
         },
         "tags": {

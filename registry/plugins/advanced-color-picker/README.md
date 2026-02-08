@@ -1,15 +1,16 @@
 # @bloktastic/advanced-color-picker
 
-Curated field plugin that extends Storyblok color picking with:
+Field plugin offering palette presets, alpha support, and design token mapping.
 
-- Team palette presets
-- Alpha channel controls
-- Optional design-token output
+## Storyblok Plugin Type
+Field Plugin. Adds custom field inputs directly in Story schemas.
 
-## Install
+## References
+- Storyblok plugins overview: https://www.storyblok.com/docs/plugins
+- Storyblok field plugin docs: https://www.storyblok.com/docs/plugins/field-plugins
+- Integration docs: https://github.com/bloktastic/advanced-color-picker
+- API/implementation docs: https://www.storyblok.com/docs/plugins/field-plugins
 
-Follow the plugin setup steps in the linked repository.
-
-## Links
-- Website: https://github.com/bloktastic/advanced-color-picker
-- NPM: https://www.npmjs.com/package/storyblok-advanced-color-picker
+## Notes
+- Category: `field-plugins`
+- Tags: `plugin`, `field`, `color`, `design-tokens`

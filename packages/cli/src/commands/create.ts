@@ -25,7 +25,7 @@ const COMPONENT_CATEGORIES = [
 const PLUGIN_CATEGORIES = [
   { title: 'field-plugins', value: 'field-plugins' },
   { title: 'tool-plugins', value: 'tool-plugins' },
-  { title: 'sidebar-plugins', value: 'sidebar-plugins' }
+  { title: 'space-plugins', value: 'space-plugins' }
 ] ;
 
 interface CreateOptions {
@@ -318,7 +318,7 @@ export const createCommand = new Command('create')
     await fs.mkdir(outputDir, { recursive: true });
 
     const manifest: PackageManifest = {
-      $schema: 'https://bloktastic.dev/schema/bloktastic.schema.json',
+      $schema: 'https://bloktastic.com/schema/bloktastic.schema.json',
       name: fullName,
       type,
       version: '1.0.0',

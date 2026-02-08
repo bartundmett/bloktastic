@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$id": "https://bloktastic.com/schema/bloktastic.schema.json",
   "title": "Bloktastic Package Manifest",
   "description": "Schema for bloktastic.json package manifests",
   "type": "object",
@@ -85,7 +85,7 @@
     },
     "category": {
       "type": "string",
-      "enum": ["sections", "content", "navigation", "forms", "media", "layout", "commerce", "field-plugins", "tool-plugins", "sidebar-plugins"]
+      "enum": ["sections", "content", "navigation", "forms", "media", "layout", "commerce", "field-plugins", "tool-plugins", "space-plugins"]
     },
     "files": {
       "type": "object",

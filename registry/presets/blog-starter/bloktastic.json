@@ -1,5 +1,5 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/blog-starter",
   "type": "preset",
   "version": "1.0.0",

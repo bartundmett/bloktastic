@@ -1,30 +1,17 @@
-import { Command } from 'commander';
 import chalk from 'chalk';
-import { addCommand } from './commands/add.js';
-import { createCommand } from './commands/create.js';
-import { infoCommand } from './commands/info.js';
-import { initCommand } from './commands/init.js';
-import { listCommand } from './commands/list.js';
-import { searchCommand } from './commands/search.js';
-import { validateCommand } from './commands/validate.js';
+import { createProgram } from './program.js';
 
-const program = new Command();
+export async function run(argv: string[] = process.argv): Promise<void> {
+  const program = createProgram();
 
-program.name('bloktastic').description('CLI for Bloktastic - Storyblok Registry').version('0.1.0');
+  await program.parseAsync(argv).catch((err: unknown) => {
+    if (err instanceof Error) {
+      console.error(chalk.red('Error:'), err.message);
+    } else {
+      console.error(chalk.red('Error:'), String(err));
+    }
+    process.exit(1);
+  });
+}
 
-program.addCommand(initCommand);
-program.addCommand(addCommand);
-program.addCommand(validateCommand);
-program.addCommand(createCommand);
-program.addCommand(searchCommand);
-program.addCommand(listCommand);
-program.addCommand(infoCommand);
-
-await program.parseAsync(process.argv).catch((err: unknown) => {
-  if (err instanceof Error) {
-    console.error(chalk.red('Error:'), err.message);
-  } else {
-    console.error(chalk.red('Error:'), String(err));
-  }
-  process.exit(1);
-});
+await run();

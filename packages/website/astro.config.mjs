@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://bloktastic.dev',
+  site: 'https://bloktastic.com',
   integrations: [tailwind()],
   output: 'static',
   build: {

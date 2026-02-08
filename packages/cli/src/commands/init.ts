@@ -52,16 +52,20 @@ export const initCommand = new Command('init')
     console.log(chalk.white("Welcome to Bloktastic! Let's set up your project.\n"));
 
     if (await configExists()) {
-      const { overwrite } = await prompts({
-        type: 'confirm',
-        name: 'overwrite',
-        message: 'bloktastic.config.json already exists. Overwrite?',
-        initial: false
-      });
+      if (options.yes) {
+        warning('bloktastic.config.json already exists. Overwriting because --yes was provided.');
+      } else {
+        const { overwrite } = await prompts({
+          type: 'confirm',
+          name: 'overwrite',
+          message: 'bloktastic.config.json already exists. Overwrite?',
+          initial: false
+        });
 
-      if (!overwrite) {
-        info('Initialization cancelled.');
-        return;
+        if (!overwrite) {
+          info('Initialization cancelled.');
+          return;
+        }
       }
     }
 
@@ -74,7 +78,7 @@ export const initCommand = new Command('init')
       }
 
       config = {
-        $schema: 'https://bloktastic.dev/schema/config.schema.json',
+        $schema: 'https://bloktastic.com/schema/config.schema.json',
         space: {
           id: options.space,
           region: options.region ?? 'eu'
@@ -126,7 +130,7 @@ export const initCommand = new Command('init')
       );
 
       config = {
-        $schema: 'https://bloktastic.dev/schema/config.schema.json',
+        $schema: 'https://bloktastic.com/schema/config.schema.json',
         space: {
           id: answers.spaceId,
           region: answers.region as Region

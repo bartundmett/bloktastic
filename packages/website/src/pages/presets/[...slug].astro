@@ -1,0 +1,121 @@
+---
+import PackageLayout from '../../layouts/PackageLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+import { extractSlug, getPackageDetails, getPresets, type PackageEntry } from '../../lib/registry';
+
+interface Props {
+  entry: PackageEntry;
+}
+
+export function getStaticPaths() {
+  return getPresets().map((entry) => ({
+    params: { slug: extractSlug(entry.path) },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props as Props;
+const details = getPackageDetails(entry.path);
+const manifest = details.manifest as Record<string, any> | null;
+const includes = Array.isArray(manifest?.includes) ? (manifest?.includes as string[]) : [];
+const installCommand = `bloktastic add ${entry.name}`;
+---
+
+<PackageLayout title={entry.title} description={(manifest?.description as string) ?? entry.title}>
+  <nav class="mb-8 text-sm font-semibold text-slate-500">
+    <a href="/presets" class="hover:text-graphite">Presets</a>
+    <span class="mx-2">/</span>
+    <span class="text-graphite">{entry.name}</span>
+  </nav>
+
+  <header class="mb-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto]">
+    <div class="min-w-0">
+      <p class="mb-3 inline-flex rounded-full bg-paper px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600">
+        Preset
+      </p>
+      <h1 class="font-display text-4xl font-extrabold text-graphite">{entry.title}</h1>
+      <p class="mt-3 max-w-3xl text-slate-600">{manifest?.description ?? 'No description available.'}</p>
+      {entry.tags && entry.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {entry.tags.map((tag) => (
+            <span class="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <aside class="glass-card h-fit p-5 text-sm">
+      <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Quick install</p>
+      <code class="mt-2 block overflow-x-auto rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-emerald-300 whitespace-nowrap">{installCommand}</code>
+      <button type="button" class="btn-secondary mt-3 w-full" data-copy={installCommand}>
+        Copy Command
+      </button>
+    </aside>
+  </header>
+
+  <div class="grid gap-8 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+    <div class="min-w-0 space-y-8">
+      {details.readme && <CodeBlock title="README" language="md" code={details.readme} />}
+      {manifest && <CodeBlock title="Manifest" language="json" code={JSON.stringify(manifest, null, 2)} />}
+    </div>
+
+    <aside class="min-w-0 space-y-6">
+      <section class="glass-card p-5">
+        <h2 class="mb-3 text-base font-bold text-graphite">Preset Info</h2>
+        <dl class="space-y-3 text-sm">
+          <div>
+            <dt class="text-slate-500">Package</dt>
+            <dd class="font-semibold text-graphite">{entry.name}</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">Version</dt>
+            <dd class="font-mono text-graphite">{entry.version}</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">Status</dt>
+            <dd class="capitalize text-graphite">{entry.status ?? 'stable'}</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">Includes</dt>
+            <dd class="text-graphite">{includes.length} packages</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="glass-card p-5">
+        <h2 class="mb-3 text-base font-bold text-graphite">Included Packages</h2>
+        {includes.length === 0 ? (
+          <p class="text-sm text-slate-500">No included packages declared.</p>
+        ) : (
+          <ul class="space-y-2 text-sm">
+            {includes.map((pkg) => (
+              <li>
+                <a
+                  href={`/components/${pkg.split('/').pop()}`}
+                  class="text-intelligence hover:underline"
+                >
+                  {pkg}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </aside>
+  </div>
+
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const value = button.getAttribute('data-copy');
+        if (!value) return;
+        await navigator.clipboard.writeText(value);
+        const original = button.textContent;
+        button.textContent = 'Copied';
+        setTimeout(() => {
+          button.textContent = original;
+        }, 1600);
+      });
+    });
+  </script>
+</PackageLayout>

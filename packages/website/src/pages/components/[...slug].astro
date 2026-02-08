@@ -34,8 +34,8 @@ const installCommand = `bloktastic add ${entry.name}`;
     <span class="text-graphite">{entry.name}</span>
   </nav>
 
-  <header class="mb-8 grid gap-4 lg:grid-cols-[1fr_auto]">
-    <div>
+  <header class="mb-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto]">
+    <div class="min-w-0">
       <p class="mb-3 inline-flex rounded-full bg-paper px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600">
         {entry.category ?? 'component'}
       </p>
@@ -52,7 +52,7 @@ const installCommand = `bloktastic add ${entry.name}`;
 
     <aside class="glass-card h-fit p-5 text-sm">
       <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Quick install</p>
-      <code class="mt-2 block rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-emerald-300">{installCommand}</code>
+      <code class="mt-2 block overflow-x-auto rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-emerald-300 whitespace-nowrap">{installCommand}</code>
       <button
         type="button"
         class="btn-secondary mt-3 w-full"
@@ -63,14 +63,14 @@ const installCommand = `bloktastic add ${entry.name}`;
     </aside>
   </header>
 
-  <div class="grid gap-8 xl:grid-cols-[1.6fr_0.9fr]">
-    <div class="space-y-8">
+  <div class="grid gap-8 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,0.9fr)]">
+    <div class="min-w-0 space-y-8">
       {schema && <CodeBlock title="Storyblok Schema" language="json" code={JSON.stringify(schema, null, 2)} />}
       {details.prompt && <CodeBlock title="Generation Prompt" language="md" code={details.prompt} />}
       {details.readme && <CodeBlock title="README" language="md" code={details.readme} />}
     </div>
 
-    <aside class="space-y-6">
+    <aside class="min-w-0 space-y-6">
       <section class="glass-card p-5">
         <h2 class="mb-3 text-base font-bold text-graphite">Package Info</h2>
         <dl class="space-y-3 text-sm">

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://bloktastic.dev/schema/bloktastic.schema.json",
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
   "name": "@bloktastic/icon-picker-pro",
   "type": "plugin",
   "version": "1.0.0",
@@ -27,7 +27,8 @@
   },
   "links": {
     "website": "https://github.com/bloktastic/icon-picker-pro",
-    "docs": "https://github.com/bloktastic/icon-picker-pro#readme"
+    "docs": "https://github.com/bloktastic/icon-picker-pro#readme",
+    "storyblok": "https://www.storyblok.com/docs/plugins/field-plugins"
   },
   "metadata": {
     "created": "2026-02-07",

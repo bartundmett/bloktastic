@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/personalization-engine",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Personalization Engine",
+  "description": "Audience-segment based content personalization for hero copy, offers, and CTA variants.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "personalization",
+    "audiences",
+    "targeting",
+    "marketing"
+  ],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://www.storyblok.com/docs/concepts/personalization",
+    "docs": "https://www.storyblok.com/docs/plugins/tool-plugins",
+    "storyblok": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}

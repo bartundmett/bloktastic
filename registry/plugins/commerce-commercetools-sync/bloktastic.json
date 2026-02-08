@@ -1,0 +1,38 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/commerce-commercetools-sync",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Commerce Commercetools Sync",
+  "description": "Embed product selectors and sync pricing/inventory from commercetools in Storyblok.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": [
+      "agnostic"
+    ]
+  },
+  "tags": [
+    "commercetools",
+    "commerce",
+    "product-picker",
+    "pricing"
+  ],
+  "category": "field-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "website": "https://docs.commercetools.com/",
+    "docs": "https://docs.commercetools.com/api",
+    "storyblok": "https://www.storyblok.com/docs/plugins/field-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "status": "maintained"
+  }
+}
