@@ -12,8 +12,8 @@ Community registry for Storyblok components, plugins, and presets, plus a CLI an
 
 Package-specific docs:
 
-- `/Users/ben/code/bloktastic/packages/cli/README.md`
-- `/Users/ben/code/bloktastic/packages/website/README.md`
+- [`packages/cli/README.md`](packages/cli/README.md)
+- [`packages/website/README.md`](packages/website/README.md)
 
 ## Repository Layout
 
