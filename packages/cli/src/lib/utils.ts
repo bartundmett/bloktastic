@@ -5,7 +5,7 @@ import ora, { type Ora } from 'ora';
 
 export const CONFIG_FILE = 'bloktastic.config.json';
 export const DEFAULT_REGISTRY_URL =
-  process.env.BLOKTASTIC_REGISTRY_URL || 'https://raw.githubusercontent.com/bloktastic/bloktastic/main/registry';
+  process.env.BLOKTASTIC_REGISTRY_URL || 'https://raw.githubusercontent.com/bartundmett/bloktastic/main/registry';
 
 export function log(message: string): void {
   console.log(message);
