@@ -1,13 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect x="100" y="90" width="1000" height="450" rx="40" fill="#fff" fill-opacity="0.9"/>
-  <text x="180" y="280" fill="#1B243F" font-size="80" font-family="Sora, sans-serif" font-weight="700">Bloktastic</text>
-  <text x="180" y="350" fill="#00B3B0" font-size="42" font-family="Sora, sans-serif" font-weight="600">Community Registry for Storyblok</text>
-  <text x="180" y="410" fill="#64748B" font-size="30" font-family="Sora, sans-serif">Build with Joy. Ship with Confidence.</text>
+
+  <!-- Logo icon (scaled from favicon) -->
+  <g transform="translate(180, 160) scale(0.5)">
+    <rect width="128" height="128" rx="28" fill="#1B243F"/>
+    <rect x="24" y="24" width="80" height="80" rx="20" fill="url(#logo-grad)"/>
+    <path d="M45 44h38v14H45zM45 61h38v14H45zM45 78h27v14H45z" fill="#fff" opacity=".9"/>
+  </g>
+
+  <text x="250" y="220" fill="#1B243F" font-size="48" font-family="Sora, sans-serif" font-weight="800">Bloktastic</text>
+
+  <text x="180" y="310" fill="#1B243F" font-size="42" font-family="Sora, sans-serif" font-weight="800">What if a <tspan fill="#E8956C">component</tspan> registry shipped</text>
+  <text x="180" y="362" fill="#1B243F" font-size="42" font-family="Sora, sans-serif" font-weight="800"><tspan fill="#00B3B0">prompts</tspan> instead of code?</text>
+
+  <text x="180" y="425" fill="#64748B" font-size="24" font-family="Sora, sans-serif">Community registry for Storyblok components and plugins.</text>
+
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
       <stop stop-color="#F0F7FF"/>
       <stop offset="1" stop-color="#E8FFF9"/>
+    </linearGradient>
+    <linearGradient id="logo-grad" x1="24" y1="24" x2="104" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00B3B0"/>
+      <stop offset="1" stop-color="#E8956C"/>
     </linearGradient>
   </defs>
 </svg>
