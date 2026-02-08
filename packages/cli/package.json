@@ -47,7 +47,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bloktastic/bloktastic"
+    "url": "https://github.com/bartundmett/bloktastic",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://bloktastic.com",
+  "bugs": {
+    "url": "https://github.com/bartundmett/bloktastic/issues"
   },
   "license": "MIT"
 }
