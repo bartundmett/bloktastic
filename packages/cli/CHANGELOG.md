@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/bartundmett/bloktastic/compare/cli-v0.1.2...cli-v0.2.0) (2026-02-08)
+
+
+### Features
+
+* add Claude Code skill and --prompt-output flag for add command ([75164e8](https://github.com/bartundmett/bloktastic/commit/75164e8be96c4146e7f734dac0d6cb092c6c5418))
+
 ## [0.1.2](https://github.com/bartundmett/bloktastic/compare/cli-v0.1.1...cli-v0.1.2) (2026-02-08)
 
 
