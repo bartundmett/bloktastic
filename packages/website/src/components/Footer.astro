@@ -3,7 +3,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="mt-20 border-t border-borderline/80 bg-white/70">
-  <div class="container-shell grid gap-8 py-10 md:grid-cols-3">
+  <div class="container-shell grid gap-8 py-10 sm:grid-cols-2 md:grid-cols-4">
     <div>
       <p class="text-base font-semibold text-graphite">Bloktastic</p>
       <p class="mt-2 text-sm leading-relaxed text-slate-600">
@@ -36,7 +36,16 @@ const year = new Date().getFullYear();
       >
         Issue Tracker
       </a>
-      <p class="pt-2 text-xs uppercase tracking-[0.12em] text-slate-400">MIT License · {year}</p>
     </div>
+
+    <div class="space-y-2 text-sm">
+      <p class="font-semibold text-graphite">Legal</p>
+      <a class="block text-slate-600 hover:text-graphite" href="/privacy">Privacy Policy</a>
+      <a class="block text-slate-600 hover:text-graphite" href="/imprint">Imprint</a>
+    </div>
+  </div>
+
+  <div class="container-shell border-t border-borderline/60 py-4">
+    <p class="text-xs text-slate-400">MIT License · {year} Bart &amp; Mett</p>
   </div>
 </footer>
