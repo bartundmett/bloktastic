@@ -19,6 +19,7 @@ interface AddOptions {
   promptOnly?: boolean;
   skipSchema?: boolean;
   force?: boolean;
+  promptOutput?: PromptOutput;
 }
 
 interface InstallOptions {
@@ -285,6 +286,7 @@ export const addCommand = new Command('add')
   .option('--prompt-only', 'Only show prompt, do not push schema')
   .option('--skip-schema', 'Skip pushing schema to Storyblok')
   .option('--force', 'Overwrite existing components in Storyblok')
+  .option('--prompt-output <mode>', 'Override prompt output mode (clipboard, file, stdout)')
   .action(async (packageName: string, options: AddOptions) => {
     if (!packageName.startsWith('@')) {
       error('Package name must include namespace (e.g. @bloktastic/hero)');
@@ -292,7 +294,7 @@ export const addCommand = new Command('add')
     }
 
     const config = await loadConfig();
-    const promptOutput = config?.preferences?.promptOutput ?? 'clipboard';
+    const promptOutput = options.promptOutput ?? config?.preferences?.promptOutput ?? 'clipboard';
 
     const installOptions: InstallOptions = {
       promptOnly: Boolean(options.promptOnly),
