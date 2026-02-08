@@ -3,7 +3,7 @@
   "name": "bloktastic",
   "version": "1.0.0",
   "homepage": "https://bloktastic.com",
-  "repository": "https://github.com/bloktastic/bloktastic",
+  "repository": "https://github.com/bartundmett/bloktastic",
   "packages": {
     "components": [
       {
@@ -449,6 +449,6 @@
     "totalComponents": 25,
     "totalPlugins": 0,
     "totalPresets": 3,
-    "lastUpdated": "2026-02-08T02:23:26.255Z"
+    "lastUpdated": "2026-02-08T02:30:34.063Z"
   }
 }
