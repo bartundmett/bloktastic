@@ -1,0 +1,90 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Agent Skill" description="Use the Bloktastic skill to install Storyblok components and generate code directly from your AI coding agent.">
+  <h1>Agent Skill</h1>
+
+  <p>
+    The Bloktastic agent skill lets AI coding agents discover, install, and generate code for Storyblok components
+    without any copy-paste. One command installs the skill, then your agent handles the rest.
+  </p>
+
+  <h2>Install</h2>
+
+  <pre><code>npx skills add https://github.com/bartundmett/bloktastic --skill bloktastic</code></pre>
+
+  <p>
+    This registers the <code>/bloktastic</code> skill with your agent. Run it once per project or globally
+    depending on your agent's configuration.
+  </p>
+
+  <h2>Prerequisites</h2>
+
+  <ul>
+    <li>An AI coding agent that supports skills (e.g. Claude Code)</li>
+    <li>A Storyblok personal access token (<code>STORYBLOK_OAUTH_TOKEN</code>)</li>
+    <li>Your Storyblok Space ID</li>
+  </ul>
+
+  <h2>Usage</h2>
+
+  <p>Once installed, invoke the skill in your agent:</p>
+
+  <pre><code>/bloktastic</code></pre>
+
+  <p>Or pass a specific package directly:</p>
+
+  <pre><code>/bloktastic add @bloktastic/hero</code></pre>
+
+  <h2>What happens under the hood</h2>
+
+  <p>The skill runs a 4-phase workflow automatically:</p>
+
+  <ol>
+    <li>
+      <strong>Setup</strong> — Checks for <code>bloktastic.config.json</code>. If missing, prompts for your
+      Space ID and region and runs <code>bloktastic init</code>.
+    </li>
+    <li>
+      <strong>Discovery</strong> — Searches the Bloktastic registry for the component you need.
+      If you passed a package name, this step is skipped.
+    </li>
+    <li>
+      <strong>Installation</strong> — Runs <code>bloktastic add &lt;package&gt; --prompt-output stdout</code>
+      to push the schema to Storyblok and capture the generation prompt.
+    </li>
+    <li>
+      <strong>Code generation</strong> — Detects your project's framework, CSS approach, and coding patterns,
+      then generates a production-ready component matching your stack.
+    </li>
+  </ol>
+
+  <h2>Manual workflow</h2>
+
+  <p>
+    If your agent doesn't support skills, or you want to use the prompt with a different AI tool,
+    you can run the CLI manually:
+  </p>
+
+  <pre><code># initialize project
+bloktastic init
+
+# add a component (prompt copied to clipboard)
+bloktastic add @bloktastic/hero
+
+# or output prompt to stdout for piping
+bloktastic add @bloktastic/hero --prompt-output stdout</code></pre>
+
+  <p>
+    Then paste the prompt into your preferred AI tool along with your project's stack context.
+  </p>
+
+  <h2>Next</h2>
+
+  <ul>
+    <li><a href="/docs/getting-started">Getting Started</a> — full manual setup guide</li>
+    <li><a href="/docs/cli">CLI Reference</a> — all commands and options</li>
+    <li><a href="/components">Browse Components</a> — see available packages</li>
+  </ul>
+</DocsLayout>

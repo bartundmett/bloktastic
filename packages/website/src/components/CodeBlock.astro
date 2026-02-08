@@ -15,7 +15,5 @@ const isMarkdown = normalizedLanguage === 'md' || normalizedLanguage === 'markdo
     <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">{title ?? language}</p>
     <p class="text-[11px] font-mono text-slate-500">{language}</p>
   </header>
-  <pre class:list={['max-w-full p-4 text-sm', isMarkdown ? 'overflow-auto whitespace-pre-wrap break-words' : 'overflow-x-auto']}>
-    <code class:list={[isMarkdown ? 'whitespace-pre-wrap break-words' : '']}>{code}</code>
-  </pre>
+  <pre class:list={['max-w-full p-4 text-sm', isMarkdown ? 'overflow-auto whitespace-pre-wrap break-words' : 'overflow-x-auto']}><code class:list={[isMarkdown ? 'whitespace-pre-wrap break-words' : '']}>{code}</code></pre>
 </section>
