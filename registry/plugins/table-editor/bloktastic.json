@@ -1,0 +1,30 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/table-editor",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Table Editor",
+  "description": "Field plugin that provides a spreadsheet-style table editor for structured tabular data like pricing comparisons, spec sheets, and schedules.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["agnostic"]
+  },
+  "tags": ["table", "spreadsheet", "data", "editor", "field-plugin"],
+  "category": "field-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "storyblok-marketplace": "https://www.storyblok.com/marketplace",
+    "docs": "https://www.storyblok.com/docs/plugins/field-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-28",
+    "updated": "2026-02-28",
+    "status": "maintained"
+  }
+}

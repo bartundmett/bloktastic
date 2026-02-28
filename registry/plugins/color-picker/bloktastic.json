@@ -1,0 +1,30 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/color-picker",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Color Picker",
+  "description": "Advanced color picker field plugin with preset palettes, opacity control, and CSS color output for brand-consistent content styling.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["agnostic"]
+  },
+  "tags": ["color", "picker", "palette", "design", "field-plugin"],
+  "category": "field-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "storyblok-marketplace": "https://www.storyblok.com/marketplace",
+    "docs": "https://www.storyblok.com/docs/plugins/field-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-28",
+    "updated": "2026-02-28",
+    "status": "maintained"
+  }
+}

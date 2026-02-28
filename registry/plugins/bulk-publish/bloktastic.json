@@ -1,0 +1,30 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/bulk-publish",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "Bulk Publish",
+  "description": "Tool plugin for publishing or unpublishing multiple stories at once with filters, dry-run preview, and batch progress tracking.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["agnostic"]
+  },
+  "tags": ["publish", "bulk", "workflow", "content-ops", "tool-plugin"],
+  "category": "tool-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "storyblok-marketplace": "https://www.storyblok.com/marketplace",
+    "docs": "https://www.storyblok.com/docs/plugins/tool-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-28",
+    "updated": "2026-02-28",
+    "status": "maintained"
+  }
+}

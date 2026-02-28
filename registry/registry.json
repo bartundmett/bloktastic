@@ -382,7 +382,104 @@
         "status": "stable"
       }
     ],
-    "plugins": [],
+    "plugins": [
+      {
+        "name": "@bloktastic/bulk-publish",
+        "path": "plugins/bulk-publish",
+        "version": "1.0.0",
+        "title": "Bulk Publish",
+        "description": "Tool plugin for publishing or unpublishing multiple stories at once with filters, dry-run preview, and batch progress tracking.",
+        "tags": [
+          "publish",
+          "bulk",
+          "workflow",
+          "content-ops",
+          "tool-plugin"
+        ],
+        "category": "tool-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/color-picker",
+        "path": "plugins/color-picker",
+        "version": "1.0.0",
+        "title": "Color Picker",
+        "description": "Advanced color picker field plugin with preset palettes, opacity control, and CSS color output for brand-consistent content styling.",
+        "tags": [
+          "color",
+          "picker",
+          "palette",
+          "design",
+          "field-plugin"
+        ],
+        "category": "field-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/deepl-translations",
+        "path": "plugins/deepl-translations",
+        "version": "1.0.0",
+        "title": "DeepL Translations",
+        "description": "Space plugin that integrates DeepL machine translation for automated and editor-assisted content localization across Storyblok languages.",
+        "tags": [
+          "translation",
+          "deepl",
+          "i18n",
+          "localization",
+          "space-plugin"
+        ],
+        "category": "space-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/json-editor",
+        "path": "plugins/json-editor",
+        "version": "1.0.0",
+        "title": "JSON Editor",
+        "description": "Field plugin with a syntax-highlighted JSON editor, schema validation, and collapsible tree view for structured data fields.",
+        "tags": [
+          "json",
+          "editor",
+          "structured-data",
+          "code",
+          "field-plugin"
+        ],
+        "category": "field-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/seo-metatags",
+        "path": "plugins/seo-metatags",
+        "version": "1.0.0",
+        "title": "SEO Meta Tags",
+        "description": "Field plugin for managing SEO meta tags including title, description, Open Graph, and Twitter Card fields in one structured input.",
+        "tags": [
+          "seo",
+          "meta",
+          "opengraph",
+          "twitter-card",
+          "field-plugin"
+        ],
+        "category": "field-plugins",
+        "status": "maintained"
+      },
+      {
+        "name": "@bloktastic/table-editor",
+        "path": "plugins/table-editor",
+        "version": "1.0.0",
+        "title": "Table Editor",
+        "description": "Field plugin that provides a spreadsheet-style table editor for structured tabular data like pricing comparisons, spec sheets, and schedules.",
+        "tags": [
+          "table",
+          "spreadsheet",
+          "data",
+          "editor",
+          "field-plugin"
+        ],
+        "category": "field-plugins",
+        "status": "maintained"
+      }
+    ],
     "presets": [
       {
         "name": "@bloktastic/blog-starter",
@@ -447,8 +544,8 @@
   },
   "stats": {
     "totalComponents": 25,
-    "totalPlugins": 0,
+    "totalPlugins": 6,
     "totalPresets": 3,
-    "lastUpdated": "2026-02-08T03:06:18.686Z"
+    "lastUpdated": "2026-02-28T15:23:34.730Z"
   }
 }

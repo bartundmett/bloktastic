@@ -1,0 +1,30 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/seo-metatags",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "SEO Meta Tags",
+  "description": "Field plugin for managing SEO meta tags including title, description, Open Graph, and Twitter Card fields in one structured input.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["agnostic"]
+  },
+  "tags": ["seo", "meta", "opengraph", "twitter-card", "field-plugin"],
+  "category": "field-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "storyblok-marketplace": "https://www.storyblok.com/marketplace",
+    "docs": "https://www.storyblok.com/docs/plugins/field-plugins"
+  },
+  "metadata": {
+    "created": "2026-02-28",
+    "updated": "2026-02-28",
+    "status": "maintained"
+  }
+}

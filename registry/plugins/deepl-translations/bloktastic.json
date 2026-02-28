@@ -1,0 +1,31 @@
+{
+  "$schema": "https://bloktastic.com/schema/bloktastic.schema.json",
+  "name": "@bloktastic/deepl-translations",
+  "type": "plugin",
+  "version": "1.0.0",
+  "title": "DeepL Translations",
+  "description": "Space plugin that integrates DeepL machine translation for automated and editor-assisted content localization across Storyblok languages.",
+  "author": {
+    "name": "Bloktastic",
+    "github": "bloktastic"
+  },
+  "compatibility": {
+    "storyblok": ">=2.0.0",
+    "frameworks": ["agnostic"]
+  },
+  "tags": ["translation", "deepl", "i18n", "localization", "space-plugin"],
+  "category": "space-plugins",
+  "files": {
+    "readme": "README.md"
+  },
+  "links": {
+    "storyblok-marketplace": "https://www.storyblok.com/marketplace",
+    "deepl-api": "https://www.deepl.com/docs-api",
+    "docs": "https://www.storyblok.com/docs/plugins/custom-application"
+  },
+  "metadata": {
+    "created": "2026-02-28",
+    "updated": "2026-02-28",
+    "status": "maintained"
+  }
+}
